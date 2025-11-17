@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冬季営業時間のお知らせ | 農家の店みのりFARM & GARDEN</title>
+    <link rel="icon" type="image/x-icon" href="./assets/icon/aaa1.ico">
+    <link rel="apple-touch-icon" href="./assets/icon/aaa1.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  </head>
+<body>
+  <header class="l-header" role="banner">
+    <div class="l-header__inner">
+      <h1 class="l-header__logo">
+        <a href="/" aria-label="農家の店みのりFARM &amp; GARDEN ホーム">
+          <img src="assets/img/common/logo-1.png" alt="農家の店みのりFARM &amp; GARDEN">
+        </a>
+      </h1>
+      <button class="l-header__toggle" type="button" aria-controls="global-nav" aria-expanded="false" aria-label="メニューを開く">
+        <span class="l-header__toggle-bar"></span>
+        <span class="l-header__toggle-bar"></span>
+        <span class="l-header__toggle-bar"></span>
+      </button>
+      <div class="l-header__overlay" aria-hidden="true"></div>
+      <nav id="global-nav" class="l-header__nav" role="navigation" aria-label="グローバルナビゲーション">
+        <ul class="l-header__nav-list">
+          <li class="l-header__nav-item"><a href="/" class="l-header__nav-link">トップ</a></li>
+          <li class="l-header__nav-item"><a href="./about.html" class="l-header__nav-link">会社概要</a></li>
+          <li class="l-header__nav-item is-active"><a href="./news.html" class="l-header__nav-link" aria-current="page">お知らせ</a></li>
+          <li class="l-header__nav-item"><a href="./shop.html" class="l-header__nav-link">店舗一覧</a></li>
+          <li class="l-header__nav-item"><a href="/contact" class="l-header__nav-link">募集要項</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="l-main">
+    <article class="p-news-detail">
+      <div class="p-news-detail__inner">
+        <header class="p-news-detail__header">
+          <div class="p-news-detail__meta">
+            <time class="p-news-detail__date" datetime="2025-10-30">2025年10月30日</time>
+            <span class="p-news-detail__cat">お知らせ</span>
+          </div>
+          <h1 class="p-news-detail__title">冬季営業時間のお知らせ</h1>
+        </header>
+
+        <div class="p-news-detail__content">
+          <p>
+            いつも農家の店みのりFARM &amp; GARDENをご利用いただき、誠にありがとうございます。
+          </p>
+          <p>
+            寒さが厳しくなる季節となりましたが、皆様いかがお過ごしでしょうか。
+          </p>
+          <p>
+            さて、冬季期間中の営業時間について、以下の通り変更させていただきます。
+          </p>
+
+          <h2>冬季営業時間</h2>
+          <p>
+            <strong>期間：2025年11月1日（土）～ 2026年3月31日（火）</strong>
+          </p>
+          
+          <!-- 画像の例（必要に応じて追加・削除してください） -->
+          <!-- 方法1: シンプルな画像 -->
+          <img src="./assets/img/common/logo.jpg" alt="冬季営業時間のお知らせ" />
+          
+          <!-- 方法2: キャプション付き画像（推奨） -->
+          <div class="p-news-detail__image-wrapper">
+            <img src="./assets/img/common/logo.jpg" alt="冬季営業時間のお知らせ" />
+            <p class="p-news-detail__image-caption">冬季営業時間のご案内</p>
+          </div>
+          <ul>
+            <li>平日：9:00 ～ 18:00</li>
+            <li>土曜日：9:00 ～ 17:00</li>
+            <li>日曜日・祝日：9:00 ～ 17:00</li>
+          </ul>
+
+          <h2>ご注意事項</h2>
+          <p>
+            冬季期間中は、天候や道路状況により、営業時間を変更する場合がございます。
+            お出かけの際は、事前に各店舗へお電話にてご確認いただきますようお願いいたします。
+          </p>
+
+          <h3>各店舗へのお問い合わせ</h3>
+          <p>
+            ご不明な点がございましたら、お気軽にお問い合わせください。
+            スタッフ一同、皆様のお越しを心よりお待ちしております。
+          </p>
+
+          <p>
+            今後とも農家の店みのりFARM &amp; GARDENをよろしくお願いいたします。
+          </p>
+        </div>
+
+        <!-- 前の記事・次の記事ナビゲーション -->
+        <!-- WP化時：前の記事・次の記事のリンクを動的に生成 -->
+        <nav class="p-news-detail__navigation" aria-label="記事ナビゲーション">
+          <div class="p-news-detail__nav-item p-news-detail__nav-item--prev">
+            <!-- 前の記事が存在する場合 -->
+            <a href="./news-detail.html" class="p-news-detail__nav-link">
+              <span class="p-news-detail__nav-label">前の記事</span>
+              <span class="p-news-detail__nav-title">ガーデニング講習会開催のご案内</span>
+            </a>
+            <!-- 前の記事が存在しない場合（最初の記事の場合） -->
+            <!-- <span class="p-news-detail__nav-link" style="opacity: 0.5; cursor: not-allowed;">
+              <span class="p-news-detail__nav-label">前の記事</span>
+              <span class="p-news-detail__nav-title">（最初の記事です）</span>
+            </span> -->
+          </div>
+          <div class="p-news-detail__nav-item p-news-detail__nav-item--next">
+            <!-- 次の記事が存在する場合 -->
+            <!-- <a href="./news-detail.html" class="p-news-detail__nav-link">
+              <span class="p-news-detail__nav-label">次の記事</span>
+              <span class="p-news-detail__nav-title">スタッフ募集のお知らせ</span>
+            </a> -->
+            <!-- 次の記事が存在しない場合（最新記事の場合） -->
+            <span class="p-news-detail__nav-link" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">
+              <span class="p-news-detail__nav-label">次の記事</span>
+              <span class="p-news-detail__nav-title">（最新記事です）</span>
+            </span>
+          </div>
+        </nav>
+
+        <footer class="p-news-detail__footer">
+          <a href="./news.html" class="p-news-detail__back-to-list">お知らせ一覧に戻る</a>
+        </footer>
+      </div>
+    </article>
+
+    <footer class="l-footer" role="contentinfo">
+      <div class="l-footer__inner">
+        <div class="l-footer__content">
+          <div class="l-footer__section l-footer__section--logo">
+            <h2 class="l-footer__logo">
+              <a href="/" aria-label="農家の店みのりFARM &amp; GARDEN ホーム">
+                <img src="assets/img/common/logo-1.png" alt="農家の店みのりFARM &amp; GARDEN">
+              </a>
+            </h2>
+            <p class="l-footer__description">
+              農業資材、農薬、肥料、機械など生産資材から、野菜・花の種や苗を扱う大型の専門店です。<br>
+              栃木県、茨城県に9店舗を展開しており、取り扱いアイテム数は3万点以上です。
+            </p>
+          </div>
+  
+          <div class="l-footer__section l-footer__section--nav">
+            <h3 class="l-footer__title">メニュー</h3>
+            <nav class="l-footer__nav">
+              <ul class="l-footer__nav-list">
+                <li class="l-footer__nav-item"><a href="/" class="l-footer__nav-link">トップ</a></li>
+                <li class="l-footer__nav-item"><a href="/about.html" class="l-footer__nav-link">会社概要</a></li>
+                <li class="l-footer__nav-item"><a href="/news.html" class="l-footer__nav-link">お知らせ</a></li>
+                <li class="l-footer__nav-item"><a href="/contact" class="l-footer__nav-link">お問い合わせ</a></li>
+              </ul>
+            </nav>
+          </div>
+  
+          <div class="l-footer__section l-footer__section--info">
+            <div class="l-footer__info">
+              <div class="l-footer__social">
+                <h4 class="l-footer__social-title">SNS</h4>
+                <ul class="l-footer__social-list">
+                  <li class="l-footer__social-item">
+                    <a href="#" class="l-footer__social-link" aria-label="Instagram">
+                      <img src="./assets/icon/icon_instagram.svg" alt="" width="24" height="24">
+                    </a>
+                  </li>
+                  <li class="l-footer__social-item">
+                    <a href="#" class="l-footer__social-link" aria-label="LINE">
+                      <img src="./assets/icon/icons8-line.svg" alt="" width="24" height="24">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="l-footer__copyright">
+          <p class="l-footer__copyright-text">
+            &copy; 2025 農家の店みのり FARM &amp; GARDEN. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <!-- Instagram埋め込み用スクリプト（1回だけ配置） -->
+  <script async src="//www.instagram.com/embed.js"></script>
+</body>
+</html>
+

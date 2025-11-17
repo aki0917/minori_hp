@@ -1,0 +1,134 @@
+/* ========================================
+   News Section (WP-friendly)
+   ======================================== */
+
+.p-news {
+  padding: 80px 0 56px;
+
+  @include up(tab) {
+    padding: 100px 0 80px;
+  }
+
+  @include up(pc) {
+    padding: 120px 0 100px;
+  }
+
+  &__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 $spacing-medium; // 16px
+
+    @include up(tab) { padding: 0 $spacing-large; } // 24px
+    @include up(pc) { padding: 0 $spacing-xl; }   // 32px
+    @include up(pc-large) { padding: 0 $spacing-xxl; }  // 40px
+  }
+
+  // タイトルは共通クラス c-sec-title を使用
+  &__title {
+    margin-top: $spacing-large;
+
+    @include up(tab) {
+      margin-top: $spacing-xl;
+    }
+
+    @include up(pc) {
+      margin-top: $spacing-xxl;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-small;
+    margin-top: $spacing-medium;
+
+    @include up(pc) {
+      margin-top: $spacing-xxl;
+    }
+  }
+
+  &__item {
+    border-bottom: 1px solid $color-gray;
+  }
+
+  &__link {
+    display: grid;
+    grid-template-columns: 8px auto auto 1fr; // 左にアクセントバー用の余白
+    align-items: center;
+    column-gap: $spacing-medium;
+    padding: 12px 8px; // クリックしやすいパディング
+    color: $color-text;
+    @include hover-effect;
+    position: relative;
+
+    // アクセントバー
+    &::before {
+      content: '';
+      grid-column: 1 / 2;
+      justify-self: stretch;
+      width: 4px;
+      height: 24px;
+      background: rgba($color-primary, 0.35);
+      border-radius: 2px;
+    }
+
+    &:hover {
+      color: $color-primary;
+      background: rgba($color-primary, 0.05);
+      border-radius: 8px;
+    }
+  }
+
+  &__date {
+    font-size: 10px;
+    color: $color-text-light;
+    white-space: nowrap;
+    grid-column: 2 / 3;
+
+    @include up(pc) {
+      font-size: $font-size-small;
+    }
+  }
+
+  &__cat {
+    display: inline-block;
+    font-size: 10px;
+    color: $color-primary;
+    background-color: rgba($color-primary, 0.1);
+    border: 1px solid rgba($color-primary, 0.3);
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    grid-column: 3 / 4;
+
+    @include up(pc) {
+      font-size: $font-size-small;
+    }
+  }
+
+  &__text {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 1.7;
+    max-width: 100%;
+    grid-column: 4 / 5;
+
+    @include up(tab) {
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 80ch;
+    }
+
+    @include up(pc) {
+      font-size: 16px;
+      line-height: 1.9;
+    }
+  }
+
+  &__more {
+    margin-top: $spacing-large;
+    text-align: center;
+  }
+}
+
+
