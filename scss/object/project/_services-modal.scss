@@ -118,38 +118,38 @@
   }
 
   &__title {
-    font-size: 20px; // モバイル: 20px
+    font-size: 20px; 
     font-weight: bold;
     color: $color-secondary;
-    padding: $spacing-medium; // モバイル: 16px
+    padding: $spacing-medium; 
     padding-bottom: $spacing-small;
     margin: 0;
     border-bottom: 2px solid $color-gray-light;
 
     @include up(tab) {
-      font-size: 24px; // タブレット: 24px
-      padding: $spacing-large; // タブレット: 24px
+      font-size: 24px; 
+      padding: $spacing-large; 
       padding-bottom: $spacing-medium;
     }
 
     @include up(pc) {
-      font-size: 28px; // PC: 28px
-      padding: $spacing-xl; // PC: 32px
+      font-size: 28px;
+      padding: $spacing-xl; 
       padding-bottom: $spacing-large;
     }
   }
 
   &__body {
-    padding: $spacing-medium; // モバイル: 16px
+    padding: $spacing-medium; 
     overflow-y: auto;
     flex: 1;
     color: $color-text;
-    line-height: 1.7; // モバイル: 1.7
-    font-size: 14px; // モバイル: 14px
+    line-height: 1.7; 
+    font-size: 14px; 
 
     @include up(tab) {
-      padding: $spacing-large; // タブレット: 24px
-      font-size: 15px; // タブレット: 15px
+      padding: $spacing-large; 
+      font-size: 15px; 
       line-height: 1.8;
     }
 

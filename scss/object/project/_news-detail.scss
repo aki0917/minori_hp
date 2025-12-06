@@ -14,12 +14,35 @@
   }
 
   &__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 $spacing-medium; // 16px
 
     @include up(tab) { padding: 0 $spacing-large; } // 24px
     @include up(pc) { padding: 0 $spacing-xl; }   // 32px
+    @include up(pc-large) { padding: 0 $spacing-xxl; }  // 40px
+  }
+
+  // コンテナ（メイン + サイドバー）
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+
+    @include up(pc) {
+      grid-template-columns: 1fr 300px;
+      gap: $spacing-xxl;
+    }
+  }
+
+  // メインコンテンツ
+  &__main {
+    min-width: 0; // グリッドアイテムのオーバーフロー対策
+  }
+
+  // サイドバー
+  &__sidebar {
+    min-width: 0; // グリッドアイテムのオーバーフロー対策
   }
 
   &__back {

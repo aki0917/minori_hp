@@ -40,7 +40,9 @@
   <main class="l-main">
     <article class="p-news-detail">
       <div class="p-news-detail__inner">
-        <header class="p-news-detail__header">
+        <div class="p-news-detail__container">
+          <div class="p-news-detail__main">
+            <header class="p-news-detail__header">
           <div class="p-news-detail__meta">
             <time class="p-news-detail__date" datetime="2025-10-30">2025年10月30日</time>
             <span class="p-news-detail__cat">お知らせ</span>
@@ -128,6 +130,90 @@
         <footer class="p-news-detail__footer">
           <a href="./news.html" class="p-news-detail__back-to-list">お知らせ一覧に戻る</a>
         </footer>
+          </div>
+
+          <aside class="p-news-detail__sidebar">
+            <div class="p-news-sidebar">
+              <!-- カテゴリー -->
+              <div class="p-news-sidebar__widget">
+                <h3 class="p-news-sidebar__title">カテゴリー</h3>
+                <ul class="p-news-sidebar__list">
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">お知らせ</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">イベント</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">採用</a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 最新記事 -->
+              <div class="p-news-sidebar__widget">
+                <h3 class="p-news-sidebar__title">最新記事</h3>
+                <ul class="p-news-sidebar__list">
+                  <li class="p-news-sidebar__item">
+                    <a href="./news-detail.html" class="p-news-sidebar__link">
+                      <time class="p-news-sidebar__date" datetime="2025-10-30">2025.10.30</time>
+                      <span class="p-news-sidebar__text">冬季営業時間のお知らせ</span>
+                    </a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">
+                      <time class="p-news-sidebar__date" datetime="2025-10-15">2025.10.15</time>
+                      <span class="p-news-sidebar__text">ガーデニング講習会開催のご案内</span>
+                    </a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">
+                      <time class="p-news-sidebar__date" datetime="2025-10-01">2025.10.01</time>
+                      <span class="p-news-sidebar__text">スタッフ募集のお知らせ</span>
+                    </a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">
+                      <time class="p-news-sidebar__date" datetime="2025-09-20">2025.09.20</time>
+                      <span class="p-news-sidebar__text">新商品入荷のお知らせ</span>
+                    </a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">
+                      <time class="p-news-sidebar__date" datetime="2025-09-10">2025.09.10</time>
+                      <span class="p-news-sidebar__text">秋の種まきセミナー開催のお知らせ</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- アーカイブ -->
+              <div class="p-news-sidebar__widget">
+                <h3 class="p-news-sidebar__title">アーカイブ</h3>
+                <ul class="p-news-sidebar__list">
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年10月</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年9月</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年8月</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年7月</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年6月</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年5月</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
     </article>
 
@@ -178,7 +264,6 @@
             </div>
           </div>
         </div>
-  
         <div class="l-footer__copyright">
           <p class="l-footer__copyright-text">
             &copy; 2025 農家の店みのり FARM &amp; GARDEN. All rights reserved.

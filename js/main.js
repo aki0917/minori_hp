@@ -144,6 +144,67 @@ const heroHeight = hero ? hero.offsetHeight : 0;
 
 // ヒーローセクションが存在する場合のみ、ヘッダーを非表示にしてScrollTriggerで制御
 if (hero) {
+  // ヒーローコンテンツの要素を取得
+  const heroContent = hero.querySelector('.l-hero__content');
+  const heroCopy = hero.querySelector('.l-hero__copy');
+  const heroBg = hero.querySelector('.l-hero-bg');
+  
+  // ヒーローコンテンツの初期状態を設定
+  if (heroContent) {
+    gsap.set(heroContent, {
+      opacity: 0
+    });
+  }
+  
+  if (heroCopy) {
+    gsap.set(heroCopy, {
+      opacity: 0,
+      y: 30 // 下からスライドイン
+    });
+  }
+  
+  if (heroBg) {
+    const heroImage = heroBg.querySelector('img');
+    if (heroImage) {
+      gsap.set(heroImage, {
+        scale: 1.1, // ズームイン効果
+        opacity: 0
+      });
+    }
+  }
+  
+  // ページ読み込み時にヒーローアニメーションを実行
+  const heroTl = gsap.timeline({ delay: 0.3 });
+  
+  if (heroBg) {
+    const heroImage = heroBg.querySelector('img');
+    if (heroImage) {
+      heroTl.to(heroImage, {
+        opacity: 1,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power2.out'
+      });
+    }
+  }
+  
+  if (heroContent) {
+    heroTl.to(heroContent, {
+      opacity: 1,
+      duration: 0.6,
+      ease: 'power2.out'
+    }, 0.2);
+  }
+  
+  if (heroCopy) {
+    heroTl.to(heroCopy, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, 0.4);
+  }
+  
   // 初期状態：ヘッダーとsocialを非表示に設定
   gsap.set(header, {
     opacity: 0,
@@ -415,6 +476,64 @@ if (modalContent) {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && servicesModal.classList.contains('is-active')) {
     closeModal();
+  }
+});
+
+// よくある質問（FAQ）のアコーディオン機能
+const faqItems = document.querySelectorAll('.p-info__faq-item');
+faqItems.forEach((item) => {
+  const question = item.querySelector('.p-info__faq-question');
+  const answer = item.querySelector('.p-info__faq-answer');
+  const icon = item.querySelector('.p-info__faq-icon');
+  
+  if (question && answer) {
+    question.addEventListener('click', () => {
+      const isExpanded = question.getAttribute('aria-expanded') === 'true';
+      
+      // 他のFAQを閉じる
+      faqItems.forEach((otherItem) => {
+        if (otherItem !== item) {
+          const otherQuestion = otherItem.querySelector('.p-info__faq-question');
+          const otherAnswer = otherItem.querySelector('.p-info__faq-answer');
+          const otherIcon = otherItem.querySelector('.p-info__faq-icon');
+          if (otherQuestion && otherAnswer) {
+            otherQuestion.setAttribute('aria-expanded', 'false');
+            otherItem.setAttribute('aria-expanded', 'false');
+            otherAnswer.style.maxHeight = '0';
+            otherAnswer.style.padding = '0 0';
+            if (otherIcon) {
+              otherIcon.textContent = '+';
+            }
+          }
+        }
+      });
+      
+      // 現在のFAQを開閉
+      if (isExpanded) {
+        question.setAttribute('aria-expanded', 'false');
+        item.setAttribute('aria-expanded', 'false');
+        answer.style.maxHeight = '0';
+        answer.style.padding = '0 0';
+        if (icon) {
+          icon.textContent = '+';
+        }
+      } else {
+        question.setAttribute('aria-expanded', 'true');
+        item.setAttribute('aria-expanded', 'true');
+        const answerHeight = answer.scrollHeight;
+        answer.style.maxHeight = `${answerHeight}px`;
+        answer.style.padding = '0 0 24px';
+        
+        // タブレット以上では28px
+        if (window.innerWidth >= 768) {
+          answer.style.padding = '0 0 28px';
+        }
+        
+        if (icon) {
+          icon.textContent = '−';
+        }
+      }
+    });
   }
 });
 
@@ -695,11 +814,27 @@ if (aboutSection) {
     
     // オーバーレイの初期状態を設定
     if (aboutOverlay) {
-      gsap.set(aboutOverlay, {
-        opacity: 0,
-        scale: 0.8,
-        y: 30
-      });
+      // sp時かどうかを判定（769px未満）
+      const isMobile = window.innerWidth < 769;
+      
+      if (isMobile) {
+        // sp時: yを使わず、xPercentのみを使用（top: 50%で縦方向は上端が中央）
+        gsap.set(aboutOverlay, {
+          opacity: 0,
+          scale: 0.8,
+          xPercent: -50,
+          y: 30 // 初期状態で少し下に配置
+        });
+      } else {
+        // tab以上: 通常のアニメーション（完全中央）
+        gsap.set(aboutOverlay, {
+          opacity: 0,
+          scale: 0.8,
+          xPercent: -50,
+          yPercent: -50,
+          y: 30
+        });
+      }
       
       if (aboutTitle) {
         gsap.set(aboutTitle, {
@@ -720,6 +855,7 @@ if (aboutSection) {
     ScrollTrigger.create({
       trigger: aboutSection,
       start: 'top 80%', // セクションが80%見えたら開始
+      once: true, // 一度だけ実行
       onEnter: () => {
         // タイムラインを作成
         const tl = gsap.timeline();
@@ -746,20 +882,42 @@ if (aboutSection) {
         // オーバーレイテキストのアニメーション（画像のアニメーションの後半から開始）
         if (aboutOverlay) {
           const overlayDelay = (aboutItems.length - 1) * 0.1 + 0.3;
+          const isMobile = window.innerWidth < 769;
           
-          tl.to(aboutOverlay, {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 0.6,
-            ease: 'back.out(1.2)' // バウンス効果
-          }, overlayDelay)
-          .to(aboutTitle, {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            ease: 'power2.out'
-          }, overlayDelay + 0.1);
+          if (isMobile) {
+            // sp時: yを使わず、xPercentのみを使用（top: 50%で縦方向は上端が中央）
+            tl.to(aboutOverlay, {
+              opacity: 1,
+              scale: 1,
+              xPercent: -50,
+              y: 0, // 初期状態のy: 30から0に戻す
+              duration: 0.6,
+              ease: 'back.out(1.2)' // バウンス効果
+            }, overlayDelay)
+            .to(aboutTitle, {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              ease: 'power2.out'
+            }, overlayDelay + 0.1);
+          } else {
+            // tab以上: 通常のアニメーション（完全中央）
+            tl.to(aboutOverlay, {
+              opacity: 1,
+              scale: 1,
+              xPercent: -50,
+              yPercent: -50,
+              y: 0, // 初期状態のy: 30から0に戻す
+              duration: 0.6,
+              ease: 'back.out(1.2)' // バウンス効果
+            }, overlayDelay)
+            .to(aboutTitle, {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              ease: 'power2.out'
+            }, overlayDelay + 0.1);
+          }
           
           // 企業理念テキストの特別なアニメーション（グラデーション＋文字アニメーション）
           if (aboutText) {
@@ -1038,6 +1196,458 @@ if (shopSection) {
               ease: 'power2.out'
             });
           }
+        });
+      }
+    });
+  }
+}
+
+// ============================================
+// トップページ：about-introセクションのアニメーション
+// ============================================
+const aboutIntroSection = document.querySelector('.p-about-intro');
+if (aboutIntroSection) {
+  const aboutIntroTitle = aboutIntroSection.querySelector('.p-about-intro__title');
+  const aboutIntroText = aboutIntroSection.querySelector('.p-about-intro__text');
+  
+  if (aboutIntroTitle) {
+    gsap.set(aboutIntroTitle, {
+      opacity: 0,
+      y: 20
+    });
+  }
+  
+  if (aboutIntroText) {
+    gsap.set(aboutIntroText, {
+      opacity: 0,
+      y: 20
+    });
+  }
+  
+  ScrollTrigger.create({
+    trigger: aboutIntroSection,
+    start: 'top 85%',
+    once: true,
+    onEnter: () => {
+      const tl = gsap.timeline();
+      
+      if (aboutIntroTitle) {
+        tl.to(aboutIntroTitle, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        });
+      }
+      
+      if (aboutIntroText) {
+        tl.to(aboutIntroText, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        }, 0.15);
+      }
+    }
+  });
+}
+
+// ============================================
+// トップページ：NEWSセクションのアニメーション
+// ============================================
+const newsSection = document.querySelector('.p-news');
+if (newsSection) {
+  const newsTitle = newsSection.querySelector('.p-news__title');
+  const newsList = newsSection.querySelector('.p-news__list');
+  const newsMore = newsSection.querySelector('.p-news__more');
+  const newsItems = newsSection.querySelectorAll('.p-news__item');
+  
+  if (newsTitle) {
+    gsap.set(newsTitle, {
+      opacity: 0,
+      y: 20
+    });
+  }
+  
+  if (newsList) {
+    gsap.set(newsList, {
+      opacity: 0,
+      y: 20
+    });
+  }
+  
+  if (newsItems.length > 0) {
+    newsItems.forEach((item) => {
+      gsap.set(item, {
+        opacity: 0,
+        y: 15
+      });
+    });
+  }
+  
+  if (newsMore) {
+    gsap.set(newsMore, {
+      opacity: 0,
+      y: 15
+    });
+  }
+  
+  ScrollTrigger.create({
+    trigger: newsSection,
+    start: 'top 85%',
+    once: true,
+    onEnter: () => {
+      const tl = gsap.timeline();
+      
+      if (newsTitle) {
+        tl.to(newsTitle, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power2.out'
+        });
+      }
+      
+      if (newsList) {
+        tl.to(newsList, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power2.out'
+        }, 0.1);
+      }
+      
+      if (newsItems.length > 0) {
+        newsItems.forEach((item, index) => {
+          tl.to(item, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: 'power2.out'
+          }, 0.2 + (index * 0.05));
+        });
+      }
+      
+      if (newsMore) {
+        tl.to(newsMore, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power2.out'
+        }, 0.4);
+      }
+    }
+  });
+}
+
+// ============================================
+// トップページ：6つの特徴セクションのアニメーション
+// ============================================
+const itemsSection = document.querySelector('.p-items');
+if (itemsSection) {
+  const itemsTitle = itemsSection.querySelector('.c-sec-title');
+  const itemsCards = itemsSection.querySelectorAll('.p-items__item');
+  
+  if (itemsCards.length > 0) {
+    if (itemsTitle) {
+      gsap.set(itemsTitle, {
+        opacity: 0,
+        y: 30
+      });
+    }
+    
+    itemsCards.forEach((card, index) => {
+      const image = card.querySelector('.p-items__image');
+      const body = card.querySelector('.p-items__body');
+      
+      gsap.set(card, {
+        opacity: 0,
+        y: 40
+      });
+      
+      if (image) {
+        gsap.set(image, {
+          opacity: 0,
+          scale: 0.95
+        });
+      }
+      
+      if (body) {
+        gsap.set(body, {
+          opacity: 0,
+          y: 20
+        });
+      }
+    });
+    
+    ScrollTrigger.create({
+      trigger: itemsSection,
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        const tl = gsap.timeline();
+        
+        if (itemsTitle) {
+          tl.to(itemsTitle, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+          });
+        }
+        
+        itemsCards.forEach((card, index) => {
+          const image = card.querySelector('.p-items__image');
+          const body = card.querySelector('.p-items__body');
+          
+          const delay = 0.3 + (index * 0.1);
+          
+          tl.to(card, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power2.out'
+          }, delay);
+          
+          if (image) {
+            tl.to(image, {
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              ease: 'power2.out'
+            }, delay);
+          }
+          
+          if (body) {
+            tl.to(body, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: 'power2.out'
+            }, delay + 0.1);
+          }
+        });
+      }
+    });
+  }
+}
+
+// ============================================
+// トップページ：みのりオリジナル商品セクションのアニメーション
+// ============================================
+const originalsSection = document.querySelector('.p-originals');
+if (originalsSection) {
+  const originalsTitle = originalsSection.querySelector('.c-sec-title');
+  const originalsCards = originalsSection.querySelectorAll('.p-items-card__card');
+  
+  if (originalsCards.length > 0) {
+    if (originalsTitle) {
+      gsap.set(originalsTitle, {
+        opacity: 0,
+        y: 30
+      });
+    }
+    
+    originalsCards.forEach((card, index) => {
+      gsap.set(card, {
+        opacity: 0,
+        y: 30,
+        scale: 0.95
+      });
+    });
+    
+    ScrollTrigger.create({
+      trigger: originalsSection,
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        const tl = gsap.timeline();
+        
+        if (originalsTitle) {
+          tl.to(originalsTitle, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+          });
+        }
+        
+        originalsCards.forEach((card, index) => {
+          tl.to(card, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: 'power2.out'
+          }, 0.3 + (index * 0.08));
+        });
+      }
+    });
+  }
+}
+
+// ============================================
+// トップページ：インフォメーションセクションのアニメーション
+// ============================================
+const infoSection = document.querySelector('.p-info');
+if (infoSection) {
+  const flowSection = infoSection.querySelector('.p-info__flow');
+  const faqSection = infoSection.querySelector('.p-info__faq');
+  const flowTitle = flowSection ? flowSection.querySelector('.c-sec-title') : null;
+  const faqTitle = faqSection ? faqSection.querySelector('.c-sec-title') : null;
+  const flowSteps = flowSection ? flowSection.querySelectorAll('.p-info__flow-step') : [];
+  const faqItems = faqSection ? faqSection.querySelectorAll('.p-info__faq-item') : [];
+  
+  if (flowSection && flowTitle) {
+    const flowCta = flowSection.querySelector('.p-info__flow-cta');
+    const flowButton = flowCta ? flowCta.querySelector('.c-button') : null;
+    
+    gsap.set(flowTitle, {
+      opacity: 0,
+      y: 30
+    });
+    
+    if (flowButton) {
+      gsap.set(flowButton, {
+        opacity: 0,
+        y: 20,
+        scale: 0.95
+      });
+    }
+    
+    flowSteps.forEach((step, index) => {
+      const number = step.querySelector('.p-info__flow-number');
+      const line = step.querySelector('.p-info__flow-line');
+      const content = step.querySelector('.p-info__flow-content');
+      
+      gsap.set(step, {
+        opacity: 0
+      });
+      
+      if (number) {
+        gsap.set(number, {
+          scale: 0,
+          opacity: 0
+        });
+      }
+      
+      if (line) {
+        gsap.set(line, {
+          scaleY: 0,
+          transformOrigin: 'top'
+        });
+      }
+      
+      if (content) {
+        gsap.set(content, {
+          opacity: 0,
+          x: -20
+        });
+      }
+    });
+    
+    ScrollTrigger.create({
+      trigger: flowSection,
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        const tl = gsap.timeline();
+        
+        tl.to(flowTitle, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+        
+        flowSteps.forEach((step, index) => {
+          const number = step.querySelector('.p-info__flow-number');
+          const line = step.querySelector('.p-info__flow-line');
+          const content = step.querySelector('.p-info__flow-content');
+          
+          const delay = 0.3 + (index * 0.15);
+          
+          tl.to(step, {
+            opacity: 1,
+            duration: 0.3,
+            ease: 'power2.out'
+          }, delay);
+          
+          if (number) {
+            tl.to(number, {
+              scale: 1,
+              opacity: 1,
+              duration: 0.5,
+              ease: 'back.out(1.4)'
+            }, delay);
+          }
+          
+          if (line) {
+            tl.to(line, {
+              scaleY: 1,
+              duration: 0.6,
+              ease: 'power2.out'
+            }, delay + 0.2);
+          }
+          
+          if (content) {
+            tl.to(content, {
+              opacity: 1,
+              x: 0,
+              duration: 0.6,
+              ease: 'power2.out'
+            }, delay + 0.1);
+          }
+        });
+        
+        if (flowButton) {
+          const lastStepDelay = 0.3 + ((flowSteps.length - 1) * 0.15) + 0.5;
+          tl.to(flowButton, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: 'back.out(1.4)'
+          }, lastStepDelay);
+        }
+      }
+    });
+  }
+  
+  if (faqSection && faqTitle) {
+    gsap.set(faqTitle, {
+      opacity: 0,
+      y: 30
+    });
+    
+    faqItems.forEach((item) => {
+      gsap.set(item, {
+        opacity: 0,
+        y: 20
+      });
+    });
+    
+    ScrollTrigger.create({
+      trigger: faqSection,
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        const tl = gsap.timeline();
+        
+        tl.to(faqTitle, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+        
+        faqItems.forEach((item, index) => {
+          tl.to(item, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out'
+          }, 0.3 + (index * 0.05));
         });
       }
     });

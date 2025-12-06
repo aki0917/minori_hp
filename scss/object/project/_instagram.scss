@@ -68,7 +68,6 @@
     position: relative;
     overflow: hidden;
     border-radius: 12px;
-    background: $color-gray-light;
     aspect-ratio: 1 / 1;
 
     @include up(tab) {

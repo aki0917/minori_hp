@@ -197,6 +197,10 @@
 
   &__nav-item {
     position: relative;
+
+    @include up(tab) {
+      font-size: $font-size-large;
+    }
   }
 
   &__nav-link {
@@ -253,7 +257,7 @@
       width: auto;
       max-width: none;
       margin: 0;
-      font-size: $font-size-large;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.02em;
       text-transform: none;

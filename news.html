@@ -40,9 +40,11 @@
   <main class="l-main">
     <section class="p-news">
       <div class="p-news__inner">
-        <h2 class="p-news__title c-sec-title">お知らせ</h2>
-        <!-- WP化時：ここをWPループで置換 -->
-        <ul class="p-news__list">
+        <div class="p-news__container">
+          <div class="p-news__main">
+            <h2 class="p-news__title c-sec-title">お知らせ</h2>
+            <!-- WP化時：ここをWPループで置換 -->
+            <ul class="p-news__list">
           <li class="p-news__item">
             <a class="p-news__link" href="./news-detail.html">
               <time class="p-news__date" datetime="2025-10-30">2025.10.30</time>
@@ -78,78 +80,93 @@
               <span class="p-news__text">秋の種まきセミナー開催のお知らせ</span>
             </a>
           </li>
-          <li class="p-news__item">
-            <a class="p-news__link" href="#">
-              <time class="p-news__date" datetime="2025-08-25">2025.08.25</time>
-              <span class="p-news__cat">お知らせ</span>
-              <span class="p-news__text">夏季休業のお知らせ</span>
-            </a>
-          </li>
-          <li class="p-news__item">
-            <a class="p-news__link" href="#">
-              <time class="p-news__date" datetime="2025-08-15">2025.08.15</time>
-              <span class="p-news__cat">イベント</span>
-              <span class="p-news__text">夏のガーデニングフェア開催中</span>
-            </a>
-          </li>
-          <li class="p-news__item">
-            <a class="p-news__link" href="#">
-              <time class="p-news__date" datetime="2025-08-01">2025.08.01</time>
-              <span class="p-news__cat">お知らせ</span>
-              <span class="p-news__text">インターパーク店リニューアルオープンのお知らせ</span>
-            </a>
-          </li>
-          <li class="p-news__item">
-            <a class="p-news__link" href="#">
-              <time class="p-news__date" datetime="2025-07-20">2025.07.20</time>
-              <span class="p-news__cat">採用</span>
-              <span class="p-news__text">パートスタッフ募集のお知らせ</span>
-            </a>
-          </li>
-          <li class="p-news__item">
-            <a class="p-news__link" href="#">
-              <time class="p-news__date" datetime="2025-07-10">2025.07.10</time>
-              <span class="p-news__cat">お知らせ</span>
-              <span class="p-news__text">みのりオリジナル商品の新発売について</span>
-            </a>
-          </li>
-          <li class="p-news__item">
-            <a class="p-news__link" href="#">
-              <time class="p-news__date" datetime="2025-06-25">2025.06.25</time>
-              <span class="p-news__cat">イベント</span>
-              <span class="p-news__text">農業機械展示会のご案内</span>
-            </a>
-          </li>
-          <li class="p-news__item">
-            <a class="p-news__link" href="#">
-              <time class="p-news__date" datetime="2025-06-15">2025.06.15</time>
-              <span class="p-news__cat">お知らせ</span>
-              <span class="p-news__text">土壌診断サービス開始のお知らせ</span>
-            </a>
-          </li>
-          <li class="p-news__item">
-            <a class="p-news__link" href="#">
-              <time class="p-news__date" datetime="2025-06-01">2025.06.01</time>
-              <span class="p-news__cat">お知らせ</span>
-              <span class="p-news__text">梅雨時期の営業時間変更について</span>
-            </a>
-          </li>
-          <li class="p-news__item">
-            <a class="p-news__link" href="#">
-              <time class="p-news__date" datetime="2025-05-20">2025.05.20</time>
-              <span class="p-news__cat">イベント</span>
-              <span class="p-news__text">春の種苗フェア開催のお知らせ</span>
-            </a>
-          </li>
-          <li class="p-news__item">
-            <a class="p-news__link" href="#">
-              <time class="p-news__date" datetime="2025-05-10">2025.05.10</time>
-              <span class="p-news__cat">お知らせ</span>
-              <span class="p-news__text">ゴールデンウィーク期間中の営業について</span>
-            </a>
-          </li>
+        
         </ul>
         <!-- WP化時：ページネーションを追加 -->
+          </div>
+
+          <aside class="p-news__sidebar">
+            <div class="p-news-sidebar">
+              <!-- カテゴリー -->
+              <div class="p-news-sidebar__widget">
+                <h3 class="p-news-sidebar__title">カテゴリー</h3>
+                <ul class="p-news-sidebar__list">
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">お知らせ</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">イベント</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">採用</a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 最新記事 -->
+              <div class="p-news-sidebar__widget">
+                <h3 class="p-news-sidebar__title">最新記事</h3>
+                <ul class="p-news-sidebar__list">
+                  <li class="p-news-sidebar__item">
+                    <a href="./news-detail.html" class="p-news-sidebar__link">
+                      <time class="p-news-sidebar__date" datetime="2025-10-30">2025.10.30</time>
+                      <span class="p-news-sidebar__text">冬季営業時間のお知らせ</span>
+                    </a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">
+                      <time class="p-news-sidebar__date" datetime="2025-10-15">2025.10.15</time>
+                      <span class="p-news-sidebar__text">ガーデニング講習会開催のご案内</span>
+                    </a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">
+                      <time class="p-news-sidebar__date" datetime="2025-10-01">2025.10.01</time>
+                      <span class="p-news-sidebar__text">スタッフ募集のお知らせ</span>
+                    </a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">
+                      <time class="p-news-sidebar__date" datetime="2025-09-20">2025.09.20</time>
+                      <span class="p-news-sidebar__text">新商品入荷のお知らせ</span>
+                    </a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">
+                      <time class="p-news-sidebar__date" datetime="2025-09-10">2025.09.10</time>
+                      <span class="p-news-sidebar__text">秋の種まきセミナー開催のお知らせ</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- アーカイブ -->
+              <div class="p-news-sidebar__widget">
+                <h3 class="p-news-sidebar__title">アーカイブ</h3>
+                <ul class="p-news-sidebar__list">
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年10月</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年9月</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年8月</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年7月</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年6月</a>
+                  </li>
+                  <li class="p-news-sidebar__item">
+                    <a href="#" class="p-news-sidebar__link">2025年5月</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 

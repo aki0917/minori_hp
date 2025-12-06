@@ -6,14 +6,67 @@
   width: 100%;
   position: relative;
 
+  &__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    pointer-events: none;
+    opacity: 0; // 初期状態は非表示（GSAPで制御）
+  }
+
+  &__copy {
+    pointer-events: auto;
+    margin-left: 16px;
+    margin-top: 32px;
+    max-width: 18em;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    opacity: 0; // 初期状態は非表示（GSAPで制御）
+  }
+
+  @include up(tab) {
+    &__copy {
+      margin-left: 40px;
+      margin-top: 56px;
+      font-size: 22px;
+    }
+  }
+
+  @include up(pc) {
+    &__copy {
+      margin-left: 80px;
+      margin-top: 80px;
+      font-size: 26px;
+    }
+  }
+
+  @include up(pc-large) {
+    &__copy {
+      margin-left: 120px;
+      margin-top: 96px;
+      font-size: 30px;
+    }
+  }
+
   &-bg {
     width: 100%;
     overflow: hidden;
+
+    picture {
+      display: block;
+      width: 100%;
+    }
 
     img {
       width: 100%;
       height: auto;
       display: block;
+      opacity: 0; // 初期状態は非表示（GSAPで制御）
     }
   }
 }

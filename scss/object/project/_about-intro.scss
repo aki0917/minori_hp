@@ -13,7 +13,7 @@
   }
 
   &__title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     color: $color-secondary;
     letter-spacing: 0.04em;
@@ -32,7 +32,7 @@
   &__text {
     color: $color-text;
     line-height: 1.9;
-    font-size: $font-size-small;
+    font-size: $font-size-xsmall;
     letter-spacing: 0.02em;
     margin: 0 auto;
     padding-top: 24px;
@@ -105,18 +105,45 @@
 
 .c-button {
   display: inline-block;
-  padding: 7px 10px;
+  padding: 5px 7px;
   border-radius: 6px;
   background-color: $color-primary;
   color: $color-white;
   font-weight: 600;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-size: $font-size-small;
+
+  @include up(tab) {
+    padding: 10px 20px;
+    font-size: $font-size-base;
+  }
 
   @include up(pc) {
-    padding: 10px 20px;
-}
+    padding: 12px 24px;
+  }
+
   &:hover {
     opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  }
+
+  &--large {
+    padding: 12px 24px;
+    font-size: $font-size-base;
+    border-radius: 8px;
+    font-weight: 700;
+
+    @include up(tab) {
+      padding: 16px 32px;
+      font-size: $font-size-large;
+    }
+
+    @include up(pc) {
+      padding: 18px 40px;
+      font-size: 20px;
+    }
   }
 }
 

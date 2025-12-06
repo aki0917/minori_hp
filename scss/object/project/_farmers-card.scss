@@ -231,30 +231,30 @@
   }
 
   &__benefit-title {
-    font-size: 16px; // モバイル: 16px
+    font-size: 13px; 
     font-weight: 700;
     color: $color-secondary;
     margin-bottom: $spacing-small;
     line-height: 1.5;
 
     @include up(tab) {
-      font-size: 18px; // タブレット: 18px
+      font-size: 14px; 
       margin-bottom: $spacing-medium;
     }
 
     @include up(pc) {
-      font-size: 20px; // PC: 20px
+      font-size: 20px; 
     }
   }
 
   &__benefit-text {
-    font-size: 13px; // モバイル: 13px
-    line-height: 1.7; // モバイル: 1.7
+    font-size: 10px; 
+    line-height: 1.7; 
     color: $color-text-light;
     margin: 0;
 
     @include up(tab) {
-      font-size: $font-size-small; // タブレット: 14px
+      font-size: 10px; // タブレット: 14px
       line-height: 1.8;
     }
 
