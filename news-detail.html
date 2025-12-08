@@ -9,25 +9,26 @@
     <!-- 例: <meta name="description" content="<?php echo esc_attr(wp_trim_words(get_the_excerpt(), 30)); ?>"> -->
     <meta name="description" content="冬季期間中の営業時間について、以下の通り変更させていただきます。期間：2025年11月1日（土）～ 2026年3月31日（火）。">
     
-    <!-- OGP（Open Graph Protocol）タグ -->
     <!-- WordPress化時：以下は動的に生成してください -->
     <!-- 例: <meta property="og:title" content="<?php echo esc_attr(get_the_title()); ?>"> -->
     <meta property="og:type" content="article">
     <meta property="og:title" content="冬季営業時間のお知らせ | 農家の店みのりFARM & GARDEN">
     <meta property="og:description" content="冬季期間中の営業時間について、以下の通り変更させていただきます。期間：2025年11月1日（土）～ 2026年3月31日（火）。">
-    <meta property="og:url" content="https://example.com/news-detail.html">
+    <meta property="og:url" content="https://www.noukanomiseminori.com/news-detail.html">
     <meta property="og:site_name" content="農家の店みのりFARM & GARDEN">
-    <meta property="og:image" content="https://example.com/assets/img/common/logo.jpg">
+    <meta property="og:image" content="https://www.noukanomiseminori.com/assets/img/common/logo.jpg">
     <meta property="og:locale" content="ja_JP">
     <meta property="article:published_time" content="2025-10-30T00:00:00+09:00">
     <meta property="article:modified_time" content="2025-10-30T00:00:00+09:00">
     
-    <!-- Twitter Card -->
     <!-- WordPress化時：以下は動的に生成してください -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="冬季営業時間のお知らせ | 農家の店みのりFARM & GARDEN">
     <meta name="twitter:description" content="冬季期間中の営業時間について、以下の通り変更させていただきます。期間：2025年11月1日（土）～ 2026年3月31日（火）。">
-    <meta name="twitter:image" content="https://example.com/assets/img/common/logo.jpg">
+    <meta name="twitter:image" content="https://www.noukanomiseminori.com/assets/img/common/logo.jpg">
+    
+    <!-- WordPress化時：以下は動的に生成してください -->
+    <link rel="canonical" href="https://www.noukanomiseminori.com/news-detail.html">
     
     <link rel="icon" type="image/x-icon" href="./assets/icon/aaa1.ico">
     <link rel="apple-touch-icon" href="./assets/icon/aaa1.ico">
@@ -37,7 +38,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
   <!-- WordPress化時：この構造化データはheader.phpに移動してください -->
-  <!-- Organization構造化データ（全ページ共通） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,8 +45,8 @@
     "name": "株式会社みのり",
     "legalName": "株式会社みのり",
     "alternateName": "農家の店みのりFARM & GARDEN",
-    "url": "https://example.com",
-    "logo": "https://example.com/assets/img/common/logo-1.png",
+    "url": "https://www.noukanomiseminori.com",
+    "logo": "https://www.noukanomiseminori.com/assets/img/common/logo-1.png",
     "description": "農業資材、農薬、肥料、機械など生産資材から、野菜・花の種や苗を扱う大型の専門店。栃木県、茨城県に9店舗を展開しており、取り扱いアイテム数は3万点以上です。",
     "address": {
       "@type": "PostalAddress",
@@ -55,7 +55,7 @@
       "postalCode": "324-0047",
       "streetAddress": "美原1-3138-2"
     },
-    "telephone": "0287-XX-XXXX",
+    "telephone": "0287-23-2211",
     "foundingDate": "1992-04",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
@@ -79,16 +79,14 @@
   }
   </script>
   
-  <!-- Article構造化データ（news-detail.html専用） -->
   <!-- WordPress化時：この部分はsingle.phpなどの記事テンプレートに移動し、動的に生成してください -->
-  <!-- 例: <?php echo json_encode($article_schema); ?> など -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     "headline": "冬季営業時間のお知らせ",
     "description": "冬季期間中の営業時間について、以下の通り変更させていただきます。",
-    "image": "https://example.com/assets/img/common/logo.jpg",
+    "image": "https://www.noukanomiseminori.com/assets/img/common/logo.jpg",
     "datePublished": "2025-10-30T00:00:00+09:00",
     "dateModified": "2025-10-30T00:00:00+09:00",
     "author": {
@@ -100,12 +98,12 @@
       "name": "株式会社みのり",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://example.com/assets/img/common/logo-1.png"
+        "url": "https://www.noukanomiseminori.com/assets/img/common/logo-1.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://example.com/news-detail.html"
+      "@id": "https://www.noukanomiseminori.com/news-detail.html"
     }
   }
   </script>
@@ -132,6 +130,25 @@
           <li class="l-header__nav-item"><a href="./shop.html" class="l-header__nav-link">店舗一覧</a></li>
           <li class="l-header__nav-item"><a href="/contact" class="l-header__nav-link">募集要項</a></li>
         </ul>
+        <div class="l-header__nav-social">
+          <div class="l-header__nav-social-group">
+            <div class="l-header__nav-social-label">みのり各店</div>
+            <a href="https://www.instagram.com/noukanomiseminori/" target="_blank" rel="noopener noreferrer" class="l-header__nav-social-link" aria-label="Instagram">
+              <img src="./assets/icon/icon_instagram.svg" alt="" width="24" height="24">
+            </a>
+          </div>
+          <div class="l-header__nav-social-group">
+            <div class="l-header__nav-social-label">インターパーク店</div>
+            <div class="l-header__nav-social-links">
+              <a href="https://www.instagram.com/minori_kaboku_interpark/" target="_blank" rel="noopener noreferrer" class="l-header__nav-social-link" aria-label="Instagram">
+                <img src="./assets/icon/icon_instagram.svg" alt="" width="24" height="24">
+              </a>
+              <a href="#" class="l-header__nav-social-link" aria-label="LINE">
+                <img src="./assets/icon/icon_line.svg" alt="" width="24" height="24">
+              </a>
+            </div>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -165,11 +182,8 @@
             <strong>期間：2025年11月1日（土）～ 2026年3月31日（火）</strong>
           </p>
           
-          <!-- 画像の例（必要に応じて追加・削除してください） -->
-          <!-- 方法1: シンプルな画像 -->
           <img src="./assets/img/common/logo.jpg" alt="冬季営業時間のお知らせ" />
           
-          <!-- 方法2: キャプション付き画像（推奨） -->
           <div class="p-news-detail__image-wrapper">
             <img src="./assets/img/common/logo.jpg" alt="冬季営業時間のお知らせ" />
             <p class="p-news-detail__image-caption">冬季営業時間のご案内</p>
@@ -197,28 +211,15 @@
           </p>
         </div>
 
-        <!-- 前の記事・次の記事ナビゲーション -->
         <!-- WP化時：前の記事・次の記事のリンクを動的に生成 -->
         <nav class="p-news-detail__navigation" aria-label="記事ナビゲーション">
           <div class="p-news-detail__nav-item p-news-detail__nav-item--prev">
-            <!-- 前の記事が存在する場合 -->
             <a href="./news-detail.html" class="p-news-detail__nav-link">
               <span class="p-news-detail__nav-label">前の記事</span>
               <span class="p-news-detail__nav-title">ガーデニング講習会開催のご案内</span>
             </a>
-            <!-- 前の記事が存在しない場合（最初の記事の場合） -->
-            <!-- <span class="p-news-detail__nav-link" style="opacity: 0.5; cursor: not-allowed;">
-              <span class="p-news-detail__nav-label">前の記事</span>
-              <span class="p-news-detail__nav-title">（最初の記事です）</span>
-            </span> -->
           </div>
           <div class="p-news-detail__nav-item p-news-detail__nav-item--next">
-            <!-- 次の記事が存在する場合 -->
-            <!-- <a href="./news-detail.html" class="p-news-detail__nav-link">
-              <span class="p-news-detail__nav-label">次の記事</span>
-              <span class="p-news-detail__nav-title">スタッフ募集のお知らせ</span>
-            </a> -->
-            <!-- 次の記事が存在しない場合（最新記事の場合） -->
             <span class="p-news-detail__nav-link" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">
               <span class="p-news-detail__nav-label">次の記事</span>
               <span class="p-news-detail__nav-title">（最新記事です）</span>
@@ -233,7 +234,6 @@
 
           <aside class="p-news-detail__sidebar">
             <div class="p-news-sidebar">
-              <!-- カテゴリー -->
               <div class="p-news-sidebar__widget">
                 <h3 class="p-news-sidebar__title">カテゴリー</h3>
                 <ul class="p-news-sidebar__list">
@@ -249,7 +249,6 @@
                 </ul>
               </div>
 
-              <!-- 最新記事 -->
               <div class="p-news-sidebar__widget">
                 <h3 class="p-news-sidebar__title">最新記事</h3>
                 <ul class="p-news-sidebar__list">
@@ -286,7 +285,6 @@
                 </ul>
               </div>
 
-              <!-- アーカイブ -->
               <div class="p-news-sidebar__widget">
                 <h3 class="p-news-sidebar__title">アーカイブ</h3>
                 <ul class="p-news-sidebar__list">
@@ -373,7 +371,6 @@
   </main>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/main.js"></script>
-  <!-- Instagram埋め込み用スクリプト（1回だけ配置） -->
   <script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>

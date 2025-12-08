@@ -195,6 +195,73 @@
     }
   }
 
+  &__nav-social {
+    display: none; // デフォルトでは非表示
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-large;
+      align-items: center;
+      margin-top: $spacing-xl;
+      padding-top: $spacing-xl;
+      border-top: 1px solid rgba($color-primary, 0.2);
+      width: 100%;
+      max-width: 260px;
+      opacity: 0; // 初期状態は非表示（GSAPでアニメーション）
+      transform: translateY(20px); // 初期状態は少し下に
+    }
+  }
+
+  &__nav-social-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-small;
+  }
+
+  &__nav-social-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: $color-secondary;
+    text-align: center;
+    padding: 6px 12px;
+    background: rgba($color-primary, 0.1);
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  &__nav-social-links {
+    display: flex;
+    gap: $spacing-medium;
+    align-items: center;
+  }
+
+  &__nav-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba($color-primary, 0.1);
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+      transform: scale(1.1);
+      background: rgba($color-primary, 0.2);
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+      display: block;
+      object-fit: contain;
+    }
+  }
+
   &__nav-item {
     position: relative;
 

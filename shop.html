@@ -9,22 +9,23 @@
     <!-- 例: <meta name="description" content="<?php echo esc_attr(get_bloginfo('description')); ?>"> -->
     <meta name="description" content="農家の店みのりFARM & GARDENの店舗一覧。栃木県・茨城県に9店舗を展開。お近くの店舗をお探しください。各店舗の住所、電話番号、営業時間などの詳細情報をご確認いただけます。">
     
-    <!-- OGP（Open Graph Protocol）タグ -->
     <!-- WordPress化時：以下は動的に生成してください -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="農家の店みのりFARM & GARDEN | 店舗一覧">
     <meta property="og:description" content="農家の店みのりFARM & GARDENの店舗一覧。栃木県・茨城県に9店舗を展開。お近くの店舗をお探しください。各店舗の住所、電話番号、営業時間などの詳細情報をご確認いただけます。">
-    <meta property="og:url" content="https://example.com/shop.html">
+    <meta property="og:url" content="https://www.noukanomiseminori.com/shop.html">
     <meta property="og:site_name" content="農家の店みのりFARM & GARDEN">
-    <meta property="og:image" content="https://example.com/assets/img/common/logo-1.png">
+    <meta property="og:image" content="https://www.noukanomiseminori.com/assets/img/common/logo-1.png">
     <meta property="og:locale" content="ja_JP">
     
-    <!-- Twitter Card -->
     <!-- WordPress化時：以下は動的に生成してください -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="農家の店みのりFARM & GARDEN | 店舗一覧">
     <meta name="twitter:description" content="農家の店みのりFARM & GARDENの店舗一覧。栃木県・茨城県に9店舗を展開。お近くの店舗をお探しください。各店舗の住所、電話番号、営業時間などの詳細情報をご確認いただけます。">
-    <meta name="twitter:image" content="https://example.com/assets/img/common/logo-1.png">
+    <meta name="twitter:image" content="https://www.noukanomiseminori.com/assets/img/common/logo-1.png">
+    
+    <!-- WordPress化時：以下は動的に生成してください -->
+    <link rel="canonical" href="https://www.noukanomiseminori.com/shop.html">
     
     <link rel="icon" type="image/x-icon" href="./assets/icon/aaa1.ico">
     <link rel="apple-touch-icon" href="./assets/icon/aaa1.ico">
@@ -34,7 +35,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
   <!-- WordPress化時：この構造化データはheader.phpに移動してください -->
-  <!-- Organization構造化データ（全ページ共通） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,8 +42,8 @@
     "name": "株式会社みのり",
     "legalName": "株式会社みのり",
     "alternateName": "農家の店みのりFARM & GARDEN",
-    "url": "https://example.com",
-    "logo": "https://example.com/assets/img/common/logo-1.png",
+    "url": "https://www.noukanomiseminori.com",
+    "logo": "https://www.noukanomiseminori.com/assets/img/common/logo-1.png",
     "description": "農業資材、農薬、肥料、機械など生産資材から、野菜・花の種や苗を扱う大型の専門店。栃木県、茨城県に9店舗を展開しており、取り扱いアイテム数は3万点以上です。",
     "address": {
       "@type": "PostalAddress",
@@ -52,7 +52,7 @@
       "postalCode": "324-0047",
       "streetAddress": "美原1-3138-2"
     },
-    "telephone": "0287-XX-XXXX",
+    "telephone": "0287-23-2211",
     "foundingDate": "1992-04",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
@@ -98,6 +98,25 @@
           <li class="l-header__nav-item is-active"><a href="./shop.html" class="l-header__nav-link" aria-current="page">店舗一覧</a></li>
           <li class="l-header__nav-item"><a href="/contact" class="l-header__nav-link">募集要項</a></li>
         </ul>
+        <div class="l-header__nav-social">
+          <div class="l-header__nav-social-group">
+            <div class="l-header__nav-social-label">みのり各店</div>
+            <a href="https://www.instagram.com/noukanomiseminori/" target="_blank" rel="noopener noreferrer" class="l-header__nav-social-link" aria-label="Instagram">
+              <img src="./assets/icon/icon_instagram.svg" alt="" width="24" height="24">
+            </a>
+          </div>
+          <div class="l-header__nav-social-group">
+            <div class="l-header__nav-social-label">インターパーク店</div>
+            <div class="l-header__nav-social-links">
+              <a href="https://www.instagram.com/minori_kaboku_interpark/" target="_blank" rel="noopener noreferrer" class="l-header__nav-social-link" aria-label="Instagram">
+                <img src="./assets/icon/icon_instagram.svg" alt="" width="24" height="24">
+              </a>
+              <a href="#" class="l-header__nav-social-link" aria-label="LINE">
+                <img src="./assets/icon/icon_line.svg" alt="" width="24" height="24">
+              </a>
+            </div>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -107,7 +126,7 @@
       <div class="p-shop__inner">
         <h2 class="p-shop__title c-sec-title">店舗一覧</h2>
         <p class="p-shop__description">
-          栃木県・茨城県に9店舗を展開しています。お近くの店舗をお探しください。
+          栃木県・茨城県に9店舗を展開しています。お近くの店舗をご利用ください。
         </p>
         <ul class="p-shop__list">
           <li class="p-shop__item">
@@ -280,7 +299,6 @@
   </main>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/main.js"></script>
-  <!-- Instagram埋め込み用スクリプト（1回だけ配置） -->
   <script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>

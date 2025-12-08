@@ -1,7 +1,5 @@
-// GSAPとScrollTriggerの登録
 gsap.registerPlugin(ScrollTrigger);
 
-// DOM要素の取得
 const header = document.querySelector('.l-header');
 const socialLeft = document.querySelector('.social--left');
 const socialRight = document.querySelector('.social--right');
@@ -60,21 +58,18 @@ const closeMenu = () => {
   const nav = header.querySelector('.l-header__nav');
   const overlay = header.querySelector('.l-header__overlay');
   
-  // タブレットサイズ以上かどうかをチェック
   const isTabletOrLarger = window.matchMedia('(min-width: 769px)').matches;
   
-  // GSAPアニメーション：メニューを閉じる
+  const navSocial = nav ? nav.querySelector('.l-header__nav-social') : null;
+  
   const tl = gsap.timeline({
     onComplete: () => {
-      // アニメーション完了後に状態をリセット
       if (nav) {
         if (isTabletOrLarger) {
-          // タブレットサイズ以上では、GSAPプロパティをクリアしてCSSの通常表示に戻す
           gsap.set(nav, {
             clearProps: 'all'
           });
         } else {
-          // モバイルサイズでは、visibilityとpointerEventsを設定
           gsap.set(nav, {
             visibility: 'hidden',
             pointerEvents: 'none'
@@ -83,17 +78,22 @@ const closeMenu = () => {
       }
       if (overlay) {
         if (isTabletOrLarger) {
-          // タブレットサイズ以上では、GSAPプロパティをクリア
           gsap.set(overlay, {
             clearProps: 'all'
           });
         } else {
-          // モバイルサイズでは、visibilityとpointerEventsを設定
           gsap.set(overlay, {
             visibility: 'hidden',
             pointerEvents: 'none'
           });
         }
+      }
+      
+      // SNSリンクもリセット
+      if (navSocial) {
+        gsap.set(navSocial, {
+          clearProps: 'all'
+        });
       }
       
       header.classList.remove('is-open');
@@ -110,6 +110,16 @@ const closeMenu = () => {
       }
     }
   });
+  
+  // SNSリンクをフェードアウト（メニューより先に）
+  if (navSocial) {
+    tl.to(navSocial, {
+      opacity: 0,
+      y: 10,
+      duration: 0.25,
+      ease: 'power2.in'
+    }, 0);
+  }
   
   // ナビゲーションを右にスライドアウト
   if (nav) {
@@ -181,6 +191,14 @@ const openMenu = () => {
     });
   }
   
+  // メニュー内のSNSリンクの初期状態を設定
+  const navSocial = nav ? nav.querySelector('.l-header__nav-social') : null;
+  if (navSocial) {
+    gsap.set(navSocial, {
+      opacity: 0,
+      y: 20
+    });
+  }
   
   // GSAPアニメーション：メニューを開く
   const tl = gsap.timeline();
@@ -203,6 +221,16 @@ const openMenu = () => {
       duration: 0.35,
       ease: 'power2.out'
     }, 0.05);
+  }
+  
+  // SNSリンクをフェードイン + スライドイン（メニューの後に表示）
+  if (navSocial) {
+    tl.to(navSocial, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: 'power2.out'
+    }, 0.25);
   }
   
   

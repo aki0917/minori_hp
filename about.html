@@ -9,22 +9,23 @@
     <!-- 例: <meta name="description" content="<?php echo esc_attr(get_post_meta($post->ID, 'description', true)); ?>"> -->
     <meta name="description" content="株式会社みのり（農家の店みのりFARM & GARDEN）の会社概要。1992年設立、栃木県・茨城県に9店舗を展開。農業資材・園芸用品の専門店として、プロの農家さんから家庭菜園愛好家まで幅広くサポートしています。">
     
-    <!-- OGP（Open Graph Protocol）タグ -->
     <!-- WordPress化時：以下は動的に生成してください -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="農家の店みのりFARM & GARDEN | 会社概要">
     <meta property="og:description" content="株式会社みのり（農家の店みのりFARM & GARDEN）の会社概要。1992年設立、栃木県・茨城県に9店舗を展開。農業資材・園芸用品の専門店として、プロの農家さんから家庭菜園愛好家まで幅広くサポートしています。">
-    <meta property="og:url" content="https://example.com/about.html">
+    <meta property="og:url" content="https://www.noukanomiseminori.com/about.html">
     <meta property="og:site_name" content="農家の店みのりFARM & GARDEN">
-    <meta property="og:image" content="https://example.com/assets/img/common/logo-1.png">
+    <meta property="og:image" content="https://www.noukanomiseminori.com/assets/img/common/logo-1.png">
     <meta property="og:locale" content="ja_JP">
     
-    <!-- Twitter Card -->
     <!-- WordPress化時：以下は動的に生成してください -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="農家の店みのりFARM & GARDEN | 会社概要">
     <meta name="twitter:description" content="株式会社みのり（農家の店みのりFARM & GARDEN）の会社概要。1992年設立、栃木県・茨城県に9店舗を展開。農業資材・園芸用品の専門店として、プロの農家さんから家庭菜園愛好家まで幅広くサポートしています。">
-    <meta name="twitter:image" content="https://example.com/assets/img/common/logo-1.png">
+    <meta name="twitter:image" content="https://www.noukanomiseminori.com/assets/img/common/logo-1.png">
+    
+    <!-- WordPress化時：以下は動的に生成してください -->
+    <link rel="canonical" href="https://www.noukanomiseminori.com/about.html">
     
     <link rel="icon" type="image/x-icon" href="./assets/icon/aaa1.ico">
     <link rel="apple-touch-icon" href="./assets/icon/aaa1.ico">
@@ -34,7 +35,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
   <!-- WordPress化時：この構造化データはheader.phpに移動してください -->
-  <!-- Organization構造化データ（全ページ共通） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,8 +42,8 @@
     "name": "株式会社みのり",
     "legalName": "株式会社みのり",
     "alternateName": "農家の店みのりFARM & GARDEN",
-    "url": "https://example.com",
-    "logo": "https://example.com/assets/img/common/logo-1.png",
+    "url": "https://www.noukanomiseminori.com",
+    "logo": "https://www.noukanomiseminori.com/assets/img/common/logo-1.png",
     "description": "農業資材、農薬、肥料、機械など生産資材から、野菜・花の種や苗を扱う大型の専門店。栃木県、茨城県に9店舗を展開しており、取り扱いアイテム数は3万点以上です。",
     "address": {
       "@type": "PostalAddress",
@@ -52,7 +52,7 @@
       "postalCode": "324-0047",
       "streetAddress": "美原1-3138-2"
     },
-    "telephone": "0287-XX-XXXX",
+    "telephone": "0287-23-2211",
     "foundingDate": "1992-04",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
@@ -98,6 +98,25 @@
           <li class="l-header__nav-item"><a href="./shop.html" class="l-header__nav-link">店舗一覧</a></li>
           <li class="l-header__nav-item"><a href="/contact" class="l-header__nav-link">募集要項</a></li>
         </ul>
+        <div class="l-header__nav-social">
+          <div class="l-header__nav-social-group">
+            <div class="l-header__nav-social-label">みのり各店</div>
+            <a href="https://www.instagram.com/noukanomiseminori/" target="_blank" rel="noopener noreferrer" class="l-header__nav-social-link" aria-label="Instagram">
+              <img src="./assets/icon/icon_instagram.svg" alt="" width="24" height="24">
+            </a>
+          </div>
+          <div class="l-header__nav-social-group">
+            <div class="l-header__nav-social-label">インターパーク店</div>
+            <div class="l-header__nav-social-links">
+              <a href="https://www.instagram.com/minori_kaboku_interpark/" target="_blank" rel="noopener noreferrer" class="l-header__nav-social-link" aria-label="Instagram">
+                <img src="./assets/icon/icon_instagram.svg" alt="" width="24" height="24">
+              </a>
+              <a href="#" class="l-header__nav-social-link" aria-label="LINE">
+                <img src="./assets/icon/icon_line.svg" alt="" width="24" height="24">
+              </a>
+            </div>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -128,7 +147,7 @@
         <div class="p-about__overlay">
           <h2 class="p-about__title">企業理念</h2>
           <p class="p-about__text">
-           『超スローフード宣言』つくる・育てるよろこび、安心・安全なのよろこび、美味しいよろこびを提案します。
+           『超スローフード宣言』つくる・育てるよろこび、安心・安全のよろこび、美味しいよろこびを提案します。
           </p>
         </div>
       </div>
@@ -174,7 +193,7 @@
               </tr>
               <tr>
                 <th>電話番号</th>
-                <td><a href="tel:0287-XX-XXXX">0287-XX-XXXX</a></td>
+                <td><a href="tel:0287-XX-XXXX">0287-23-2211</a></td>
               </tr>
               <tr>
                 <th>設立</th>
@@ -221,23 +240,26 @@
             「農家の店みのり」は、地域の農家さんや家庭菜園を楽しむ皆さまの"頼れる相談相手"として、長年この土地でお店を続けてきました。
           </p>
           <p class="p-about-eaat__text">
-            日々の仕入れや商品管理は、実際に現場で作物づくりに関わってきたスタッフが担当しており、用途に合わせて最適な資材をご提案できる体制を整えています。
+            当社では、お客さまのニーズと専門知識をと備えたスタッフの経験をもとに、最適な資材をご提案、販売できる体制を整えています。
           </p>
           <p class="p-about-eaat__text">
-            当店のスタッフは、農業経験10年以上のベテランから、農業士・園芸士・農薬管理士などの資格を持つ専門スタッフまで、多様な経験と知識を持っています。野菜栽培、果樹、花きなど、それぞれの専門分野に精通したスタッフが、お客様のご要望に合わせて最適なアドバイスをいたします。
+            勤続経験20年以上の多様な経験と知識を持っているベテランスタッフをはじめ、毒劇物取扱責任者、販売士2級の資格取得しているスタッフまで多数在籍しています。
+          </p>
+          <p class="p-about-eaat__text">
+            野菜栽培、果樹、花きなど、それぞれの専門分野に精通したスタッフが、お客様のご要望に合わせて最適なアドバイスをいたします。
           </p>
         </div>
 
         <div class="p-about-eaat__item">
           <h3 class="p-about-eaat__subtitle">お店の強み</h3>
           <p class="p-about-eaat__text">
-            当店は、大型ホームセンターとは異なり、農業資材・園芸用品に特化した専門店です。
+            当店は、大型量販店とは異なり、農業資材・園芸用品に特化した専門店です。
           </p>
           <p class="p-about-eaat__text">
             肥料・土・苗・農具などを幅広く取り扱うだけでなく、「どれを選べば良いか迷ってしまう」というお客様に対しても、経験豊富なスタッフが目的や環境に合わせて丁寧にアドバイスいたします。
           </p>
           <p class="p-about-eaat__text">
-            地域の気候や土壌に合わせた"実践的なアドバイス"ができるのは、長年この地域で営業してきた当店ならではの強みです。
+            地域の気候や土壌に合わせた"実践的なアドバイス"ができるのは、長年この地域で営業してきた当社ならではの強みです。
           </p>
         </div>
 
@@ -431,7 +453,6 @@
   </main>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/main.js"></script>
-  <!-- Instagram埋め込み用スクリプト（1回だけ配置） -->
   <script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>

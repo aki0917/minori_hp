@@ -1,4 +1,3 @@
-// 店舗情報のデータ
 const shopData = {
   nishinasuno: {
     name: '西那須野店',
@@ -103,36 +102,29 @@ const shopData = {
     hours: '9:00 ～ 18:00<br>10月～2月：9:00 ～ 17:30までの営業となります。',
     features: `
       <p>みのり花木センター インターパーク店は、栃木県宇都宮市にある大型ガーデンセンターです。</p>
-      <p>花と観葉植物: 四季折々の花苗、鉢花に加え、サボテン、多肉、観葉植物や花木まで豊富に取り揃えています。</p>
+      <p>花と観葉植物、四季折々の花苗、鉢花に加え、サボテン、多肉、観葉植物や花木まで豊富に取り揃えています。</p>
       <p>ガーデニング用品、雑貨、園芸資材など品ぞろえは地域最大級です。</p>
       <p>直売所コーナーも併設しています。</p>
     `
   }
 };
 
-// 住所からGoogleマップの埋め込みURLを生成
 function generateMapUrl(address) {
-  // <br>タグを削除して住所のみを取得
   const cleanAddress = address.replace(/<br>/g, '').replace(/〒[\d-]+/g, '').trim();
-  // URLエンコードしてGoogleマップURLを生成
   return `https://www.google.com/maps?q=${encodeURIComponent(cleanAddress)}&output=embed`;
 }
 
-// URLパラメータから店舗IDを取得
 function getShopIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
   return params.get('shop') || 'nishinasuno';
 }
 
-// 店舗情報を表示
 function displayShopInfo() {
   const shopId = getShopIdFromUrl();
   const shop = shopData[shopId] || shopData.nishinasuno;
   
-  // タイトルを更新
   document.title = `農家の店みのりFARM & GARDEN | ${shop.name}`;
   
-  // 各要素を更新
   const shopNameEl = document.getElementById('shopName');
   const shopTitleEl = document.getElementById('shopTitle');
   const shopMainImageEl = document.getElementById('shopMainImage');
@@ -157,13 +149,11 @@ function displayShopInfo() {
   if (shopHoursEl) shopHoursEl.innerHTML = shop.hours;
   if (shopAccessEl) shopAccessEl.textContent = shop.access;
   if (shopMapEl) {
-    // 住所からGoogleマップのURLを生成
     shopMapEl.src = generateMapUrl(shop.address);
   }
   if (shopFeaturesEl) shopFeaturesEl.innerHTML = shop.features;
 }
 
-// ページ読み込み時に実行
 document.addEventListener('DOMContentLoaded', displayShopInfo);
 
 
