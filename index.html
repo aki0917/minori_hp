@@ -60,6 +60,25 @@
       "@type": "QuantitativeValue",
       "value": "120"
     },
+    "knowsAbout": [
+      "農業資材販売",
+      "園芸用品",
+      "土壌診断",
+      "施肥設計",
+      "農薬適正使用"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "郡司 健",
+      "jobTitle": "代表取締役"
+    },
+    "employee": [
+      {
+        "@type": "Person",
+        "jobTitle": "販売スタッフ",
+        "description": "勤続20年以上。毒劇物取扱責任者、販売士2級・グリーンアドバイザー保有のベテランスタッフが在籍。"
+      }
+    ],
     "areaServed": [
       {
         "@type": "State",
@@ -209,7 +228,9 @@
           src="./assets/img/hero/top-hero.jpg" 
           alt="" 
           decoding="async"
-        >
+          fetchpriority="high"
+          width="1920"
+          height="1080">
       </picture>
     </div>
     <div class="l-hero__content" aria-label="みのりFARM &amp; GARDEN コンセプトコピー">
@@ -279,7 +300,15 @@
         <h2 id="items-title" class="c-sec-title">6つの特徴</h2>
         <div class="p-items__content">
           <article class="p-items__item">
-            <img class="p-items__image" src="./assets/img/top/item3.png" alt="種苗" />
+            <img 
+              class="p-items__image" 
+              src="./assets/img/top/item3.png" 
+              alt="種苗"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="400"
+              height="300">
             <div class="p-items__body">
               <h3 class="p-items__item-title">種子</h3>
               <h4 class="p-items__item-sub">日本初、タネの美術館「シードギャラリー」</h4>
@@ -287,7 +316,15 @@
             </div>
           </article>
           <article class="p-items__item">
-            <img class="p-items__image" src="./assets/img/top/item5.jpg" alt="野菜苗"/>
+            <img 
+              class="p-items__image" 
+              src="./assets/img/top/item5.jpg" 
+              alt="野菜苗"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="400"
+              height="300">
             <div class="p-items__body">
               <h3 class="p-items__item-title">野菜苗</h3>
               <h4 class="p-items__item-sub">メーカ-苗から当社オリジナル苗まで</h4>
@@ -295,7 +332,15 @@
             </div>
           </article>
           <article class="p-items__item">
-            <img class="p-items__image" src="./assets/img/top/item1.png" alt="肥料"/>
+            <img 
+              class="p-items__image" 
+              src="./assets/img/top/item1.png" 
+              alt="肥料"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="400"
+              height="300">
             <div class="p-items__body">
               <h3 class="p-items__item-title">肥料</h3>
               <h4 class="p-items__item-sub">農業の基本は土づくり</h4>
@@ -303,7 +348,15 @@
             </div>
           </article>
           <article class="p-items__item">
-            <img class="p-items__image" src="./assets/img/top/item2.png" alt="農業資材" />
+            <img 
+              class="p-items__image" 
+              src="./assets/img/top/item2.png" 
+              alt="農業資材"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="400"
+              height="300">
             <div class="p-items__body">
               <h3 class="p-items__item-title">農業資材</h3>
               <h4 class="p-items__item-sub">作物の能力を最大に引き出す副資材</h4>
@@ -311,7 +364,15 @@
             </div>
           </article>
           <article class="p-items__item">
-            <img class="p-items__image" src="./assets/img/top/item4.jpg" alt="農薬" />
+            <img 
+              class="p-items__image" 
+              src="./assets/img/top/item4.jpg" 
+              alt="農薬"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="400"
+              height="300">
             <div class="p-items__body">
               <h3 class="p-items__item-title">農薬</h3>
               <h4 class="p-items__item-sub">作物の薬を処方する植物のドクター</h4>
@@ -319,7 +380,15 @@
             </div>
           </article>
           <article class="p-items__item">
-            <img class="p-items__image" src="./assets/img/top/item6.jpg" alt="肥料"/>
+            <img 
+              class="p-items__image" 
+              src="./assets/img/top/item6.jpg" 
+              alt="肥料"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="400"
+              height="300">
             <div class="p-items__body">
               <h3 class="p-items__item-title">園芸（ガーデニング）</h3>
               <h4 class="p-items__item-sub">家庭菜園から趣味の園芸まで幅広くご提案</h4>
@@ -335,35 +404,75 @@
         <h2 id="originals-title" class="c-sec-title">みのりオリジナル商品</h2>
         <ul class="p-items-card__list">
           <li class="p-items-card__card">
-            <img class="p-items__image" src="./assets/img/products/minori-or888.png" alt="肥料" />
+            <img 
+              class="p-items__image" 
+              src="./assets/img/products/minori-or888.png" 
+              alt="肥料"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="300"
+              height="300">
             <h3 class="p-items-card__card-title">NM液肥8号</h3>
             <p class="p-items-card__card-sub">作物別に最適化したブレンド</p>
             <p class="p-items-card__card-text">窒素・りん酸・加里の成分が8%並びです。各作物の元肥に幅広く使用できます。りん酸・加里不足圃場への追肥にも適しています。</p>
             <p class="p-items-card__card-cta"><a href="https://item.rakuten.co.jp/kminori/1008855/" target="_blank" class="c-button">詳しく見る</a></p>
           </li>
           <li class="p-items-card__card">
-            <img class="p-items__image" src="./assets/img/products/minori-or11210.png" alt="肥料" />
+            <img 
+              class="p-items__image" 
+              src="./assets/img/products/minori-or11210.png" 
+              alt="肥料"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="300"
+              height="300">
             <h3 class="p-items-card__card-title">NM液肥N-1PK20号</h3>
             <p class="p-items-card__card-sub">土づくりを手軽に</p>
             <p class="p-items-card__card-text">NM液肥N1-PK20号：りん酸・加里の補給に優れた肥料です。1%のアンモニア窒素が作物の活力に貢献します。</p>
             <p class="p-items-card__card-cta"><a href="https://item.rakuten.co.jp/kminori/1008856/" target="_blank" class="c-button">詳しく見る</a></p>
           </li>
           <li class="p-items-card__card">
-            <img class="p-items__image" src="./assets/img/products/minori-or1058.png" alt="肥料" />
+            <img 
+              class="p-items__image" 
+              src="./assets/img/products/minori-or1058.png" 
+              alt="肥料"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="300"
+              height="300">
             <h3 class="p-items-card__card-title">NM液肥 10号 10-5-8</h3>
             <p class="p-items-card__card-sub">植物本来の力を引き出す</p>
             <p class="p-items-card__card-text">窒素成分に対し、りん酸・加里成分を低く抑えトマト・イチゴ・ハウス栽培作物の追肥に適した成分バランスになっています。</p>
             <p class="p-items-card__card-cta"><a href="https://item.rakuten.co.jp/kminori/1008854/" target="_blank" class="c-button">詳しく見る</a></p>
           </li>
           <li class="p-items-card__card">
-            <img class="p-items__image" src="./assets/img/products/minori-or1566.png" alt="肥料" />
+            <img 
+              class="p-items__image" 
+              src="./assets/img/products/minori-or1566.png" 
+              alt="肥料"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="300"
+              height="300">
             <h3 class="p-items-card__card-title">NM液肥 15号 15-6-6</h3>
             <p class="p-items-card__card-sub">植物本来の力を引き出す</p>
             <p class="p-items-card__card-text">NM液肥15号：窒素成分を高めた液肥です。長期栽培作物の果菜類など茎葉部の生育に効果を発揮します。</p>
             <p class="p-items-card__card-cta"><a href="https://item.rakuten.co.jp/kminori/1008853/" target="_blank" class="c-button">詳しく見る</a></p>
           </li>
           <li class="p-items-card__card">
-            <img class="p-items__image" src="./assets/img/products/minori-bo.png" alt="肥料" />
+            <img 
+              class="p-items__image" 
+              src="./assets/img/products/minori-bo.png" 
+              alt="肥料"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              width="300"
+              height="300">
             <h3 class="p-items-card__card-title">みのりバイオ</h3>
             <p class="p-items-card__card-sub">菌のチカラで土を元気に!!</p>
             <p class="p-items-card__card-text">野菜づくりは、土づくりから!!菌のチカラで土を元気に!!野菜活き活き!!、芝生も活き活き!!</p>
@@ -607,7 +716,14 @@
             <span class="p-farmers-card__card-label">FARMER'S CARD</span>
             <div class="p-farmers-card__benefit-content">
               <div class="p-farmers-card__benefit-image">
-                <img src="./assets/mascot.png" alt="みのりカードマスコット" />
+                <img 
+                  src="./assets/mascot.png" 
+                  alt="みのりカードマスコット"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                  width="200"
+                  height="200">
               </div>
               <div class="p-farmers-card__benefit-text-wrapper">
                 <div class="p-farmers-card__benefit-number">①</div>
@@ -620,7 +736,14 @@
             <span class="p-farmers-card__card-label">FARMER'S CARD</span>
             <div class="p-farmers-card__benefit-content">
               <div class="p-farmers-card__benefit-image">
-                <img src="./assets/mascot.png" alt="みのりカードマスコット" />
+                <img 
+                  src="./assets/mascot.png" 
+                  alt="みのりカードマスコット"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                  width="200"
+                  height="200">
               </div>
               <div class="p-farmers-card__benefit-text-wrapper">
                 <div class="p-farmers-card__benefit-number">②</div>
@@ -633,7 +756,14 @@
             <span class="p-farmers-card__card-label">FARMER'S CARD</span>
             <div class="p-farmers-card__benefit-content">
               <div class="p-farmers-card__benefit-image">
-                <img src="./assets/mascot.png" alt="みのりカードマスコット" />
+                <img 
+                  src="./assets/mascot.png" 
+                  alt="みのりカードマスコット"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                  width="200"
+                  height="200">
               </div>
               <div class="p-farmers-card__benefit-text-wrapper">
                 <div class="p-farmers-card__benefit-number">③</div>
@@ -646,7 +776,14 @@
             <span class="p-farmers-card__card-label">FARMER'S CARD</span>
             <div class="p-farmers-card__benefit-content">
               <div class="p-farmers-card__benefit-image">
-                <img src="./assets/mascot.png" alt="みのりカードマスコット" />
+                <img 
+                  src="./assets/mascot.png" 
+                  alt="みのりカードマスコット"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                  width="200"
+                  height="200">
               </div>
               <div class="p-farmers-card__benefit-text-wrapper">
                 <div class="p-farmers-card__benefit-number">④</div>
