@@ -4,12 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>農家の店みのりFARM & GARDEN | 会社概要</title>
+    
+    <!-- WordPress化時：以下は動的に生成してください -->
+    <!-- 例: <meta name="description" content="<?php echo esc_attr(get_post_meta($post->ID, 'description', true)); ?>"> -->
+    <meta name="description" content="株式会社みのり（農家の店みのりFARM & GARDEN）の会社概要。1992年設立、栃木県・茨城県に9店舗を展開。農業資材・園芸用品の専門店として、プロの農家さんから家庭菜園愛好家まで幅広くサポートしています。">
+    
+    <!-- OGP（Open Graph Protocol）タグ -->
+    <!-- WordPress化時：以下は動的に生成してください -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="農家の店みのりFARM & GARDEN | 会社概要">
+    <meta property="og:description" content="株式会社みのり（農家の店みのりFARM & GARDEN）の会社概要。1992年設立、栃木県・茨城県に9店舗を展開。農業資材・園芸用品の専門店として、プロの農家さんから家庭菜園愛好家まで幅広くサポートしています。">
+    <meta property="og:url" content="https://example.com/about.html">
+    <meta property="og:site_name" content="農家の店みのりFARM & GARDEN">
+    <meta property="og:image" content="https://example.com/assets/img/common/logo-1.png">
+    <meta property="og:locale" content="ja_JP">
+    
+    <!-- Twitter Card -->
+    <!-- WordPress化時：以下は動的に生成してください -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="農家の店みのりFARM & GARDEN | 会社概要">
+    <meta name="twitter:description" content="株式会社みのり（農家の店みのりFARM & GARDEN）の会社概要。1992年設立、栃木県・茨城県に9店舗を展開。農業資材・園芸用品の専門店として、プロの農家さんから家庭菜園愛好家まで幅広くサポートしています。">
+    <meta name="twitter:image" content="https://example.com/assets/img/common/logo-1.png">
+    
     <link rel="icon" type="image/x-icon" href="./assets/icon/aaa1.ico">
     <link rel="apple-touch-icon" href="./assets/icon/aaa1.ico">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- WordPress化時：この構造化データはheader.phpに移動してください -->
+  <!-- Organization構造化データ（全ページ共通） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "株式会社みのり",
+    "legalName": "株式会社みのり",
+    "alternateName": "農家の店みのりFARM & GARDEN",
+    "url": "https://example.com",
+    "logo": "https://example.com/assets/img/common/logo-1.png",
+    "description": "農業資材、農薬、肥料、機械など生産資材から、野菜・花の種や苗を扱う大型の専門店。栃木県、茨城県に9店舗を展開しており、取り扱いアイテム数は3万点以上です。",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "大田原市",
+      "addressRegion": "栃木県",
+      "postalCode": "324-0047",
+      "streetAddress": "美原1-3138-2"
+    },
+    "telephone": "0287-XX-XXXX",
+    "foundingDate": "1992-04",
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "value": "120"
+    },
+    "areaServed": [
+      {
+        "@type": "State",
+        "name": "栃木県"
+      },
+      {
+        "@type": "State",
+        "name": "茨城県"
+      }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/noukanomiseminori/",
+      "https://www.rakuten.co.jp/kminori/",
+      "https://store.shopping.yahoo.co.jp/noyaku-com/"
+    ]
+  }
+  </script>
   </head>
 <body>
   <header class="l-header" role="banner">
@@ -108,6 +173,10 @@
                 <td>〒324-0047<br>栃木県大田原市美原1-3138-2</td>
               </tr>
               <tr>
+                <th>電話番号</th>
+                <td><a href="tel:0287-XX-XXXX">0287-XX-XXXX</a></td>
+              </tr>
+              <tr>
                 <th>設立</th>
                 <td>1992年4月</td>
               </tr>
@@ -137,6 +206,52 @@
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-about-eaat">
+      <div class="p-about-eaat__bg">
+        <img src="./assets/img/about/about-item1.jpg" alt="" class="p-about-eaat__bg-image">
+      </div>
+      <div class="p-about-eaat__inner">
+        <div class="p-about-eaat__item">
+          <h3 class="p-about-eaat__subtitle">私たちについて</h3>
+          <p class="p-about-eaat__text">
+            「農家の店みのり」は、地域の農家さんや家庭菜園を楽しむ皆さまの"頼れる相談相手"として、長年この土地でお店を続けてきました。
+          </p>
+          <p class="p-about-eaat__text">
+            日々の仕入れや商品管理は、実際に現場で作物づくりに関わってきたスタッフが担当しており、用途に合わせて最適な資材をご提案できる体制を整えています。
+          </p>
+          <p class="p-about-eaat__text">
+            当店のスタッフは、農業経験10年以上のベテランから、農業士・園芸士・農薬管理士などの資格を持つ専門スタッフまで、多様な経験と知識を持っています。野菜栽培、果樹、花きなど、それぞれの専門分野に精通したスタッフが、お客様のご要望に合わせて最適なアドバイスをいたします。
+          </p>
+        </div>
+
+        <div class="p-about-eaat__item">
+          <h3 class="p-about-eaat__subtitle">お店の強み</h3>
+          <p class="p-about-eaat__text">
+            当店は、大型ホームセンターとは異なり、農業資材・園芸用品に特化した専門店です。
+          </p>
+          <p class="p-about-eaat__text">
+            肥料・土・苗・農具などを幅広く取り扱うだけでなく、「どれを選べば良いか迷ってしまう」というお客様に対しても、経験豊富なスタッフが目的や環境に合わせて丁寧にアドバイスいたします。
+          </p>
+          <p class="p-about-eaat__text">
+            地域の気候や土壌に合わせた"実践的なアドバイス"ができるのは、長年この地域で営業してきた当店ならではの強みです。
+          </p>
+        </div>
+
+        <div class="p-about-eaat__item">
+          <h3 class="p-about-eaat__subtitle">お客様への価値</h3>
+          <p class="p-about-eaat__text">
+            農家の店みのりでは、初心者の園芸ユーザーからプロの農家さんまで、幅広いお客様にご利用いただいています。
+          </p>
+          <p class="p-about-eaat__text">
+            「初めて野菜を育てるけど何を買えばいい？」「土の改良方法が知りたい」「この苗に合う肥料は？」など、どんなご相談でも歓迎です。
+          </p>
+          <p class="p-about-eaat__text">
+            商品を販売するだけでなく、"育てる楽しさと成功体験" をサポートするお店として、地域の皆さまの豊かな暮らしのお手伝いをしてまいります。
+          </p>
         </div>
       </div>
     </section>

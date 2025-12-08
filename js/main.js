@@ -56,13 +56,80 @@ const handleFocusTrap = (event) => {
 
 const closeMenu = () => {
   if (!header || !menuToggle) return;
-  header.classList.remove('is-open');
-  document.body.classList.remove('is-menu-open');
-  menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.setAttribute('aria-label', 'メニューを開く');
-  if (navOverlay) {
-    navOverlay.setAttribute('aria-hidden', 'true');
+  
+  const nav = header.querySelector('.l-header__nav');
+  const overlay = header.querySelector('.l-header__overlay');
+  
+  // タブレットサイズ以上かどうかをチェック
+  const isTabletOrLarger = window.matchMedia('(min-width: 769px)').matches;
+  
+  // GSAPアニメーション：メニューを閉じる
+  const tl = gsap.timeline({
+    onComplete: () => {
+      // アニメーション完了後に状態をリセット
+      if (nav) {
+        if (isTabletOrLarger) {
+          // タブレットサイズ以上では、GSAPプロパティをクリアしてCSSの通常表示に戻す
+          gsap.set(nav, {
+            clearProps: 'all'
+          });
+        } else {
+          // モバイルサイズでは、visibilityとpointerEventsを設定
+          gsap.set(nav, {
+            visibility: 'hidden',
+            pointerEvents: 'none'
+          });
+        }
+      }
+      if (overlay) {
+        if (isTabletOrLarger) {
+          // タブレットサイズ以上では、GSAPプロパティをクリア
+          gsap.set(overlay, {
+            clearProps: 'all'
+          });
+        } else {
+          // モバイルサイズでは、visibilityとpointerEventsを設定
+          gsap.set(overlay, {
+            visibility: 'hidden',
+            pointerEvents: 'none'
+          });
+        }
+      }
+      
+      header.classList.remove('is-open');
+      document.body.classList.remove('is-menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'メニューを開く');
+      if (navOverlay) {
+        navOverlay.setAttribute('aria-hidden', 'true');
+      }
+      
+      // GSAPのtransformを復元（ScrollTriggerが管理している状態に戻す）
+      if (hero) {
+        ScrollTrigger.refresh();
+      }
+    }
+  });
+  
+  // ナビゲーションを右にスライドアウト
+  if (nav) {
+    tl.to(nav, {
+      x: '100%',
+      opacity: 0,
+      duration: 0.35,
+      ease: 'power2.in'
+    }, 0.05);
   }
+  
+  // オーバーレイをフェードアウト
+  if (overlay) {
+    tl.to(overlay, {
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power2.in'
+    }, 0);
+  }
+  
   document.removeEventListener('keydown', handleFocusTrap);
 
   if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
@@ -75,6 +142,18 @@ const closeMenu = () => {
 
 const openMenu = () => {
   if (!header || !menuToggle) return;
+  
+  // GSAPのtransformを一時的に無効化（メニューの位置ズレを防ぐため）
+  // 親要素のtransformが子要素のposition: fixedに影響するのを防ぐ
+  gsap.set(header, { 
+    clearProps: "transform",
+    force3D: false
+  });
+  
+  const nav = header.querySelector('.l-header__nav');
+  const overlay = header.querySelector('.l-header__overlay');
+  
+  // クラスを追加（スタイルの初期状態を設定）
   header.classList.add('is-open');
   document.body.classList.add('is-menu-open');
   menuToggle.setAttribute('aria-expanded', 'true');
@@ -82,6 +161,51 @@ const openMenu = () => {
   if (navOverlay) {
     navOverlay.setAttribute('aria-hidden', 'false');
   }
+  
+  // 初期状態を設定
+  if (nav) {
+    gsap.set(nav, {
+      x: '100%',
+      opacity: 0,
+      backgroundColor: 'transparent',
+      visibility: 'visible',
+      pointerEvents: 'auto'
+    });
+  }
+  
+  if (overlay) {
+    gsap.set(overlay, {
+      opacity: 0,
+      visibility: 'visible',
+      pointerEvents: 'auto'
+    });
+  }
+  
+  
+  // GSAPアニメーション：メニューを開く
+  const tl = gsap.timeline();
+  
+  // オーバーレイをフェードイン
+  if (overlay) {
+    tl.to(overlay, {
+      opacity: 1,
+      duration: 0.3,
+      ease: 'power2.out'
+    }, 0);
+  }
+  
+  // ナビゲーションを右からスライドイン + 背景を白に
+  if (nav) {
+    tl.to(nav, {
+      x: '0%',
+      opacity: 1,
+      backgroundColor: '#ffffff',
+      duration: 0.35,
+      ease: 'power2.out'
+    }, 0.05);
+  }
+  
+  
   lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
   document.addEventListener('keydown', handleFocusTrap);
 
@@ -90,8 +214,11 @@ const openMenu = () => {
   const elementToFocus = firstLink || menuToggle;
 
   if (elementToFocus) {
+    // アニメーションが少し進んでからフォーカス
     requestAnimationFrame(() => {
-      elementToFocus.focus();
+      setTimeout(() => {
+        elementToFocus.focus();
+      }, 200);
     });
   }
 };
@@ -129,7 +256,40 @@ if (navOverlay) {
 const desktopMediaQuery = window.matchMedia('(min-width: 769px)');
 const handleMediaQueryChange = (event) => {
   if (event.matches) {
-    closeMenu();
+    // タブレットサイズ以上になった時
+    const nav = header ? header.querySelector('.l-header__nav') : null;
+    const overlay = header ? header.querySelector('.l-header__overlay') : null;
+    
+    // メニューが開いている場合は閉じる
+    if (header && header.classList.contains('is-open')) {
+      // クラスと属性をリセット
+      header.classList.remove('is-open');
+      document.body.classList.remove('is-menu-open');
+      if (menuToggle) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'メニューを開く');
+      }
+      if (navOverlay) {
+        navOverlay.setAttribute('aria-hidden', 'true');
+      }
+      
+      document.removeEventListener('keydown', handleFocusTrap);
+      lastFocusedElement = null;
+    }
+    
+    // メニューの開閉状態に関係なく、GSAPのプロパティをクリアしてCSSの通常表示に戻す
+    // （SPでメニューを開閉した後にタブレットサイズに変更した場合でも正しく表示されるように）
+    if (nav) {
+      gsap.set(nav, {
+        clearProps: 'all' // すべてのGSAPプロパティをクリア
+      });
+    }
+    
+    if (overlay) {
+      gsap.set(overlay, {
+        clearProps: 'all' // すべてのGSAPプロパティをクリア
+      });
+    }
   }
 };
 
@@ -818,11 +978,12 @@ if (aboutSection) {
       const isMobile = window.innerWidth < 769;
       
       if (isMobile) {
-        // sp時: yを使わず、xPercentのみを使用（top: 50%で縦方向は上端が中央）
+        // sp時: 中央配置
         gsap.set(aboutOverlay, {
           opacity: 0,
           scale: 0.8,
           xPercent: -50,
+          yPercent: -50,
           y: 30 // 初期状態で少し下に配置
         });
       } else {
@@ -885,11 +1046,12 @@ if (aboutSection) {
           const isMobile = window.innerWidth < 769;
           
           if (isMobile) {
-            // sp時: yを使わず、xPercentのみを使用（top: 50%で縦方向は上端が中央）
+            // sp時: 中央配置
             tl.to(aboutOverlay, {
               opacity: 1,
               scale: 1,
               xPercent: -50,
+              yPercent: -50,
               y: 0, // 初期状態のy: 30から0に戻す
               duration: 0.6,
               ease: 'back.out(1.2)' // バウンス効果
@@ -1034,6 +1196,105 @@ if (aboutMessageSection) {
             duration: 0.8,
             ease: 'power2.out'
           }, 0.3 + (index * 0.2)); // タイトルの後、0.2秒間隔で表示
+        });
+      }
+    });
+  }
+}
+
+// E-E-A-Tセクションのアニメーション（運営者紹介・強み・価値）
+const aboutEaatSection = document.querySelector('.p-about-eaat');
+if (aboutEaatSection) {
+  // パララックス背景画像のアニメーション
+  const eaatBgImage = aboutEaatSection.querySelector('.p-about-eaat__bg-image');
+  if (eaatBgImage) {
+    gsap.to(eaatBgImage, {
+      yPercent: 30, // 下に30%移動（スクロールに応じて）
+      ease: 'none',
+      scrollTrigger: {
+        trigger: aboutEaatSection,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true // スクロールに連動
+      }
+    });
+  }
+
+  const eaatItems = aboutEaatSection.querySelectorAll('.p-about-eaat__item');
+  
+  if (eaatItems.length > 0) {
+    // 各アイテム（カード）の初期状態を設定
+    eaatItems.forEach((item, itemIndex) => {
+      const subtitle = item.querySelector('.p-about-eaat__subtitle');
+      const texts = item.querySelectorAll('.p-about-eaat__text');
+      
+      // カード全体の初期状態
+      gsap.set(item, {
+        opacity: 0,
+        y: 50,
+        scale: 0.95
+      });
+      
+      // タイトルの初期状態
+      if (subtitle) {
+        gsap.set(subtitle, {
+          opacity: 0,
+          y: 30
+        });
+      }
+      
+      // 各テキストの初期状態
+      texts.forEach((text, textIndex) => {
+        gsap.set(text, {
+          opacity: 0,
+          y: 30
+        });
+      });
+    });
+    
+    // ScrollTriggerでアニメーションを発動
+    ScrollTrigger.create({
+      trigger: aboutEaatSection,
+      start: 'top 80%', // セクションが80%見えたら開始
+      once: true, // 一度だけ実行
+      onEnter: () => {
+        const tl = gsap.timeline();
+        
+        // 各アイテムを順番にアニメーション
+        eaatItems.forEach((item, itemIndex) => {
+          const subtitle = item.querySelector('.p-about-eaat__subtitle');
+          const texts = item.querySelectorAll('.p-about-eaat__text');
+          
+          // カード全体のアニメーション（0.2秒間隔で順番に表示）
+          const itemDelay = itemIndex * 0.2;
+          
+          tl.to(item, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.7,
+            ease: 'power2.out'
+          }, itemDelay);
+          
+          // タイトルのアニメーション（カードのアニメーションと同時開始）
+          if (subtitle) {
+            tl.to(subtitle, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: 'power2.out'
+            }, itemDelay + 0.1);
+          }
+          
+          // 各テキストを順番にアニメーション（タイトルの後、0.15秒間隔）
+          texts.forEach((text, textIndex) => {
+            tl.to(text, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: 'power2.out'
+            }, itemDelay + 0.2 + (textIndex * 0.15));
+          });
         });
       }
     });
