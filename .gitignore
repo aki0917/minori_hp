@@ -21,3 +21,12 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+# WordPress files (WordPress化時に追加)
+# wp-config.php
+# .htaccess
+# wp-content/uploads/
+# wp-content/cache/
+# wp-content/backup-db/
+# wp-content/advanced-cache.php
+# wp-content/wp-cache-config.php
+
