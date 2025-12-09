@@ -5,6 +5,8 @@ const shopData = {
     address: '〒329-2745<br>栃木県那須塩原市三区町510-2',
     tel: '0287-36-7043',
     hours: '9:00 ～ 18:30<br>10月～2月：9:00 ～ 18:00までの営業となります。',
+    lat: '36.9619',
+    lng: '140.0464',
     features: `
       <p>農家の店みのり西那須野店は、西那須野町（現在の那須塩原市）にみのり１号店としてオープンしました。</p>
       <p>国道4号線沿いにあり、アクセスしやすい場所にあります。小型店ですが、きめ細かい接客をモットーに地域密着型店舗づくりをしています。</p>
@@ -16,6 +18,8 @@ const shopData = {
     address: '〒329-0431<br>栃木県下野市薬師寺祇園原3379-3',
     tel: '0285-44-3831',
     hours: '9:00 ～ 18:30<br>10月～2月：9:00 ～ 18:00までの営業となります。',
+    lat: '36.4333',
+    lng: '139.8500',
     access: 'JR石橋駅より車で約5分',
     features: `
       <p>農家の店みのり石橋店は、下野市薬師寺祇園原の国道４号線沿いにあります。</p>
@@ -28,6 +32,8 @@ const shopData = {
     address: '〒321-4304<br>栃木県真岡市東郷20-2',
     tel: '0285-83-9696',
     hours: '9:00 ～ 18:30<br>10月～2月：9:00 ～ 18:00までの営業となります。',
+    lat: '36.4333',
+    lng: '140.0167',
     access: 'JR真岡駅より車で約8分',
     features: `
       <p>農家の店みのり真岡店は、真岡市東郷にあります。プロの農家の方から家庭菜園を楽しむ方まで、幅広いニーズに応える商品を取り揃えています。</p>
@@ -40,6 +46,8 @@ const shopData = {
     address: '〒324-0047<br>栃木県大田原市美原1-3138-2',
     tel: '0287-23-3335',
     hours: '9:00 ～ 18:30<br>10月～2月：9:00 ～ 18:00までの営業となります。',
+    lat: '36.8667',
+    lng: '140.0500',
     access: 'JR大田原駅より車で約10分',
     features: `
       <p>農家の店みのり大田原店は、大田原市美原にあります。2024年よりファーム＆ガーデンストアとしてガーデン売り場を拡大しました。</p>
@@ -52,6 +60,8 @@ const shopData = {
     address: '〒329-1312<br>栃木県さくら市桜野1141-2',
     tel: '028-681-1911',
     hours: '9:00 ～ 18:30<br>10月～2月：9:00 ～ 18:00までの営業となります。',
+    lat: '36.6833',
+    lng: '139.9667',
     access: 'JR氏家駅より車で約5分',
     features: `
       <p>農家の店みのり氏家店は、栃木県さくら市櫻野にあります。水稲が盛んな地域の為、特に水稲関連資材の資材が充実しています。</p>
@@ -64,6 +74,8 @@ const shopData = {
     address: '〒322-0015<br>栃木県鹿沼市上石川1457-1',
     tel: '0289-76-4445',
     hours: '9:00 ～ 18:30<br>10月～2月：9:00 ～ 18:00までの営業となります。',
+    lat: '36.5667',
+    lng: '139.7500',
     access: 'JR鹿沼駅より車で約8分',
     features: `
       <p>農家の店みのり鹿沼店は、東北自動車道鹿沼インターの近くにあります。農家さんだけでなく、ガーデナーのお客さまが多いお店です。</p>
@@ -76,6 +88,8 @@ const shopData = {
     address: '〒309-1106<br>茨城県筑西市新治1996-123',
     tel: '0296-21-7788',
     hours: '9:00 ～ 18:30<br>10月～2月：9:00 ～ 18:00までの営業となります。',
+    lat: '36.2833',
+    lng: '139.9833',
     access: 'JR下館駅より車で約15分',
     features: `
       <p>農家の店みのり協和店は、茨城県筑西市にあります。当店茨城県唯一の店舗となりますので、広範囲のお客さまよりご利用いただいております。</p>
@@ -88,6 +102,8 @@ const shopData = {
     address: '〒321-3426<br>栃木県芳賀郡市貝町赤羽3589-2',
     tel: '0285-67-4141',
     hours: '9:00 ～ 18:30<br>10月～2月：9:00 ～ 18:00までの営業となります。',
+    lat: '36.5500',
+    lng: '140.1000',
     access: 'JR真岡駅より車で約15分',
     features: `
       <p>農家の店みのり市貝店は、芳賀郡市貝町赤羽にあります。プロの農家の方から家庭菜園を楽しむ方まで、幅広いニーズに応える商品を取り揃えています。</p>
@@ -100,6 +116,8 @@ const shopData = {
     address: '〒321-0918<br>栃木県宇都宮市平塚町307-1',
     tel: '028-656-7193',
     hours: '9:00 ～ 18:00<br>10月～2月：9:00 ～ 17:30までの営業となります。',
+    lat: '36.5667',
+    lng: '139.8833',
     features: `
       <p>みのり花木センター インターパーク店は、栃木県宇都宮市にある大型ガーデンセンターです。</p>
       <p>花と観葉植物、四季折々の花苗、鉢花に加え、サボテン、多肉、観葉植物や花木まで豊富に取り揃えています。</p>
@@ -117,6 +135,135 @@ function generateMapUrl(address) {
 function getShopIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
   return params.get('shop') || 'nishinasuno';
+}
+
+// 住所をPostalAddress形式に変換
+function parseAddress(address) {
+  const cleanAddress = address.replace(/<br>/g, ' ').trim();
+  const postalMatch = cleanAddress.match(/〒([\d-]+)/);
+  const postalCode = postalMatch ? postalMatch[1] : '';
+  
+  // 都道府県を抽出
+  const prefectureMatch = cleanAddress.match(/([都道府県]+)/);
+  const prefecture = prefectureMatch ? prefectureMatch[1] : '';
+  
+  // 市区町村を抽出
+  const cityMatch = cleanAddress.match(/([都道府県]+)([^都道府県]+?[市区町村])/);
+  const city = cityMatch ? cityMatch[2] : '';
+  
+  // 番地を抽出
+  const streetMatch = cleanAddress.match(/([市区町村]+)(.+?)(?:\s|$)/);
+  const streetAddress = streetMatch ? streetMatch[2].replace(/〒[\d-]+/g, '').trim() : '';
+  
+  return {
+    postalCode: postalCode,
+    addressRegion: prefecture,
+    addressLocality: city,
+    streetAddress: streetAddress
+  };
+}
+
+// 営業時間をOpeningHoursSpecification形式に変換
+function parseOpeningHours(hours) {
+  // 基本的な営業時間パターンを解析
+  // 例: "9:00 ～ 18:30" または "平日：9:00 ～ 18:00<br>土曜日：9:00 ～ 17:00<br>日曜日・祝日：9:00 ～ 17:00"
+  const hoursText = hours.replace(/<br>/g, ' ').trim();
+  
+  // 平日の営業時間を抽出
+  const weekdayMatch = hoursText.match(/(?:平日|月曜|火曜|水曜|木曜|金曜)[：:]\s*(\d{1,2}):(\d{2})\s*[～~]\s*(\d{1,2}):(\d{2})/);
+  const weekendMatch = hoursText.match(/(?:土曜|日曜|祝日)[：:]\s*(\d{1,2}):(\d{2})\s*[～~]\s*(\d{1,2}):(\d{2})/);
+  
+  const openingHours = [];
+  
+  if (weekdayMatch) {
+    openingHours.push({
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": `${weekdayMatch[1].padStart(2, '0')}:${weekdayMatch[2]}`,
+      "closes": `${weekdayMatch[3].padStart(2, '0')}:${weekdayMatch[4]}`
+    });
+  } else {
+    // デフォルトの営業時間（9:00-18:30）
+    openingHours.push({
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:30"
+    });
+  }
+  
+  if (weekendMatch) {
+    openingHours.push({
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday", "Sunday"],
+      "opens": `${weekendMatch[1].padStart(2, '0')}:${weekendMatch[2]}`,
+      "closes": `${weekendMatch[3].padStart(2, '0')}:${weekendMatch[4]}`
+    });
+  } else {
+    // デフォルトの営業時間（9:00-17:00）
+    openingHours.push({
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "17:00"
+    });
+  }
+  
+  return openingHours;
+}
+
+// 構造化データを動的に生成
+function generateStructuredData(shop) {
+  const address = parseAddress(shop.address);
+  const openingHours = parseOpeningHours(shop.hours);
+  const imageUrl = shop.image.startsWith('http') ? shop.image : `https://www.noukanomiseminori.com/${shop.image.replace('./', '')}`;
+  const currentUrl = window.location.href;
+  
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "GardenStore",
+    "name": `農家の店みのりFARM & GARDEN ${shop.name}`,
+    "image": imageUrl,
+    "url": currentUrl,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": address.streetAddress,
+      "addressLocality": address.addressLocality,
+      "addressRegion": address.addressRegion,
+      "postalCode": address.postalCode,
+      "addressCountry": "JP"
+    },
+    "telephone": shop.tel,
+    "openingHoursSpecification": openingHours,
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": shop.lat || "",
+      "longitude": shop.lng || ""
+    },
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "株式会社みのり"
+    }
+  };
+  
+  return structuredData;
+}
+
+// 構造化データを更新
+function updateStructuredData(shop) {
+  const structuredData = generateStructuredData(shop);
+  const scriptTag = document.querySelector('script[type="application/ld+json"][data-shop="localbusiness"]');
+  
+  if (scriptTag) {
+    scriptTag.textContent = JSON.stringify(structuredData, null, 2);
+  } else {
+    // 構造化データのscriptタグが存在しない場合は作成
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-shop', 'localbusiness');
+    script.textContent = JSON.stringify(structuredData, null, 2);
+    document.head.appendChild(script);
+  }
 }
 
 function displayShopInfo() {
@@ -152,6 +299,9 @@ function displayShopInfo() {
     shopMapEl.src = generateMapUrl(shop.address);
   }
   if (shopFeaturesEl) shopFeaturesEl.innerHTML = shop.features;
+  
+  // 構造化データを更新
+  updateStructuredData(shop);
 }
 
 document.addEventListener('DOMContentLoaded', displayShopInfo);

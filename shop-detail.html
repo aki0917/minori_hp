@@ -34,7 +34,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
-  <!-- WordPress化時：この構造化データはheader.phpに移動してください -->
+  <!-- ============================================ -->
+  <!-- 共通構造化データ（全ページ共通） -->
+  <!-- WordPress化時：以下はheader.phpに移動してください -->
+  <!-- ============================================ -->
+  
+  <!-- Organization（企業情報） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -95,27 +100,85 @@
   }
   </script>
   
-  <!-- WordPress化時：この部分は店舗詳細ページテンプレートに移動し、各店舗情報を動的に生成してください -->
-  <!-- 
+  <!-- WebSite -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "店舗名",
-    "image": "店舗画像URL",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "住所",
-      "addressLocality": "市区町村",
-      "addressRegion": "都道府県",
-      "postalCode": "郵便番号"
-    },
-    "telephone": "電話番号",
-    "openingHours": "営業時間",
-    "priceRange": "価格帯"
+    "@type": "WebSite",
+    "name": "農家の店みのりFARM & GARDEN",
+    "url": "https://www.noukanomiseminori.com"
   }
   </script>
-  -->
+  
+  <!-- BreadcrumbList（パンくず） -->
+  <!-- WordPress化時：functions.phpで動的生成想定（今は静的サイトなので空配列でOK） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": []
+  }
+  </script>
+  
+  <!-- ============================================ -->
+  <!-- ページ個別データ（shop-detail.htmlのみ） -->
+  <!-- WordPress化時：この部分は店舗詳細ページテンプレートに移動し、各店舗情報を動的に生成してください -->
+  <!-- ACF フィールド: shop_name, shop_image, shop_address, shop_tel, shop_hours, shop_lat, shop_lng -->
+  <!-- ============================================ -->
+  
+  <!-- LocalBusiness（店舗固有） -->
+  <!-- WordPress化時：この部分は店舗詳細ページテンプレートに移動し、ACFフィールドから動的に生成してください -->
+  <!-- JavaScriptで動的に更新されます（shop-detail.js参照） -->
+  <script type="application/ld+json" data-shop="localbusiness">
+  {
+    "@context": "https://schema.org",
+    "@type": "GardenStore",
+    "name": "農家の店みのりFARM & GARDEN 西那須野店",
+    "image": "https://www.noukanomiseminori.com/assets/img/shop/ni1.jpg",
+    "url": "https://www.noukanomiseminori.com/shop-detail.html",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "三区町510-2",
+      "addressLocality": "那須塩原市",
+      "addressRegion": "栃木県",
+      "postalCode": "329-2745",
+      "addressCountry": "JP"
+    },
+    "telephone": "0287-36-7043",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    ],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "36.9619",
+      "longitude": "140.0464"
+    },
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "株式会社みのり"
+    }
+  }
+  </script>
   </head>
 <body>
   <header class="l-header" role="banner">

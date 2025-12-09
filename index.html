@@ -36,7 +36,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
-  <!-- WordPress化時：この構造化データはheader.phpに移動してください -->
+  <!-- ============================================ -->
+  <!-- 共通構造化データ（全ページ共通） -->
+  <!-- WordPress化時：以下はheader.phpに移動してください -->
+  <!-- ============================================ -->
+  
+  <!-- Organization（企業情報） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -97,7 +102,32 @@
   }
   </script>
   
+  <!-- WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "農家の店みのりFARM & GARDEN",
+    "url": "https://www.noukanomiseminori.com"
+  }
+  </script>
+  
+  <!-- BreadcrumbList（パンくず） -->
+  <!-- WordPress化時：functions.phpで動的生成想定（今は静的サイトなので空配列でOK） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": []
+  }
+  </script>
+  
+  <!-- ============================================ -->
+  <!-- ページ個別データ（index.htmlのみ） -->
   <!-- WordPress化時：この部分はFAQセクションがあるページテンプレートに移動してください -->
+  <!-- ============================================ -->
+  
+  <!-- FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -647,16 +677,17 @@
                 <span class="p-info__faq-icon">+</span>
               </button>
               <div class="p-info__faq-answer">
-                <p class="p-info__faq-answer-text">銀行（楽天銀行・ゆうちょ銀行）への振り込み（前払い）となります。<br>クレジットのご使用の場合は、弊社ネットショップからの購入となります。</p>
+                <p class="p-info__faq-answer-text">銀行（楽天銀行・ゆうちょ銀行）への振り込み（前払い）となります。<br>クレジットのご使用の場合は、弊社ネットショップからの購入となります</p>
               </div>
-              <div class="p-info__faq-item" aria-expanded="false">
-                <button class="p-info__faq-question" type="button" aria-expanded="false">
-                  <span class="p-info__faq-question-text">キャンセルはできますか？</span>
-                  <span class="p-info__faq-icon">+</span>
-                </button>
-                <div class="p-info__faq-answer">
-                  <p class="p-info__faq-answer-text">大口ご注文のキャンセルはご入金前までとさせていただきます。<br>ご入金確認後のキャンセルはご遠慮ください。</p>
-                </div>
+            </div>
+            <div class="p-info__faq-item" aria-expanded="false">
+              <button class="p-info__faq-question" type="button" aria-expanded="false">
+                <span class="p-info__faq-question-text">キャンセルはできますか？</span>
+                <span class="p-info__faq-icon">+</span>
+              </button>
+              <div class="p-info__faq-answer">
+                <p class="p-info__faq-answer-text">大口ご注文のキャンセルはご入金前までとさせていただきます。<br>ご入金確認後のキャンセルはご遠慮ください。</p>
+              </div>
             </div>
           </div>
         </div>
