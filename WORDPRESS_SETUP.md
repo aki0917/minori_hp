@@ -31,8 +31,8 @@
 
 2. **データベースの作成**
    - データベース名: `minorihp_wp`（任意）
-   - ユーザー名: `root`（MAMPの場合）
-   - パスワード: `root`（MAMPの場合、または空）
+   - ユーザー名: `admin`（MAMPの場合）
+   - パスワード: `admin`（MAMPの場合、または空）
    - ホスト: `localhost`（または`127.0.0.1`）
 
 3. **WordPressのインストール**
@@ -99,9 +99,66 @@ wordpress/
 5. ✅ 基本的なテーマファイル（style.css, functions.php等）の作成
 6. ✅ HTMLの分割とテンプレート化
 
+## ローカル環境でのメール設定
+
+### Local by Flywheelの場合（推奨）
+
+Local by Flywheelには**MailHog**というメールキャプチャツールが組み込まれています。
+
+#### 1. MailHogの有効化
+
+1. Localアプリでサイトを選択
+2. 「Open Site Shell」をクリック（またはターミナルでサイトのディレクトリに移動）
+3. 以下のコマンドでMailHogを起動：
+   ```bash
+   mailhog
+   ```
+   - または、Localの「Open MailHog」ボタンを使用
+
+#### 2. MailHogのアクセス
+
+- **Web UI**: http://localhost:8025
+- ここで送信されたメールを確認できます
+- メールは実際には送信されず、MailHogにキャプチャされます
+
+#### 3. WordPressでのメール送信テスト
+
+WordPressから送信されるメール（パスワードリセット、お問い合わせフォームなど）はすべてMailHogで確認できます。
+
+### その他の方法
+
+#### オプションA: WP Mail SMTP プラグイン
+
+1. WordPress管理画面で「WP Mail SMTP」プラグインをインストール
+2. Gmail、SendGrid、MailgunなどのSMTPサービスを設定
+3. 実際のメール送信が可能（本番環境と同じ設定）
+
+#### オプションB: functions.phpでメールをログに記録
+
+開発中はメールをファイルに保存して確認：
+
+```php
+// functions.phpに追加
+add_action('phpmailer_init', function($phpmailer) {
+    $phpmailer->isSMTP();
+    $phpmailer->Host = 'localhost';
+    $phpmailer->Port = 1025; // MailHogのポート
+    $phpmailer->SMTPAuth = false;
+});
+```
+
+### 本番環境への移行時
+
+本番環境では、以下のいずれかを設定：
+
+1. **サーバーのメール機能を使用**（最も簡単）
+2. **SMTPプラグインを使用**（Gmail、SendGrid、Mailgunなど）
+3. **メール送信サービスを使用**（SendGrid、Mailgun、Amazon SESなど）
+
 ## 注意事項
 
 - 現在の静的サイトはバックアップを取っておくこと
 - Gitで管理している場合は、WordPress化用のブランチを作成すること
 - 段階的に移行し、動作確認をしながら進めること
+- ローカル環境ではMailHogでメールを確認し、本番環境では適切なメール送信設定を行うこと
 
