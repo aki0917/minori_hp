@@ -92,9 +92,9 @@
       }
     ],
     "sameAs": [
-      "https://www.instagram.com/noukanomiseminori/",
-      "https://www.rakuten.co.jp/kminori/",
-      "https://store.shopping.yahoo.co.jp/noyaku-com/"
+      "<?php echo esc_url_raw( 'https://www.instagram.com/noukanomiseminori/' ); ?>",
+      "<?php echo esc_url_raw( 'https://www.rakuten.co.jp/kminori/' ); ?>",
+      "<?php echo esc_url_raw( 'https://store.shopping.yahoo.co.jp/noyaku-com/' ); ?>"
     ]
   }
   </script>
@@ -165,14 +165,14 @@
         <div class="l-header__nav-social">
           <div class="l-header__nav-social-group">
             <div class="l-header__nav-social-label">みのり各店</div>
-            <a href="https://www.instagram.com/noukanomiseminori/" target="_blank" rel="noopener noreferrer" class="l-header__nav-social-link" aria-label="Instagram">
+            <a href="<?php echo esc_url( 'https://www.instagram.com/noukanomiseminori/' ); ?>" target="_blank" rel="noopener noreferrer" class="l-header__nav-social-link" aria-label="Instagram">
               <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_instagram.svg' ); ?>" alt="" width="24" height="24">
             </a>
           </div>
           <div class="l-header__nav-social-group">
             <div class="l-header__nav-social-label">インターパーク店</div>
             <div class="l-header__nav-social-links">
-              <a href="https://www.instagram.com/minori_kaboku_interpark/" target="_blank" rel="noopener noreferrer" class="l-header__nav-social-link" aria-label="Instagram">
+              <a href="<?php echo esc_url( 'https://www.instagram.com/minori_kaboku_interpark/' ); ?>" target="_blank" rel="noopener noreferrer" class="l-header__nav-social-link" aria-label="Instagram">
                 <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_instagram.svg' ); ?>" alt="" width="24" height="24">
               </a>
               <a href="#" class="l-header__nav-social-link" aria-label="LINE">
@@ -185,20 +185,22 @@
     </div>
   </header>
 
+  <?php if ( is_front_page() ) : ?>
   <aside class="social social--left">
     <div class="social__label">みのり各店</div>
-    <a href="https://www.instagram.com/noukanomiseminori/" target="_blank" rel="noopener noreferrer" class="social__link" aria-label="Instagram">
+    <a href="<?php echo esc_url( 'https://www.instagram.com/noukanomiseminori/' ); ?>" target="_blank" rel="noopener noreferrer" class="social__link" aria-label="Instagram">
       <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_instagram.svg' ); ?>" alt="" width="24" height="24">
     </a>
   </aside>
 
   <aside class="social social--right">
     <div class="social__label">インターパーク店</div>
-    <a href="https://www.instagram.com/minori_kaboku_interpark/" target="_blank" rel="noopener noreferrer" class="social__link" aria-label="Instagram">
+    <a href="<?php echo esc_url( 'https://www.instagram.com/minori_kaboku_interpark/' ); ?>" target="_blank" rel="noopener noreferrer" class="social__link" aria-label="Instagram">
       <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_instagram.svg' ); ?>" alt="" width="24" height="24">
     </a>
     <a href="#" class="social__link" aria-label="LINE">
       <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_line.svg' ); ?>" alt="" width="24" height="24">
     </a>
   </aside>
+  <?php endif; ?>
 

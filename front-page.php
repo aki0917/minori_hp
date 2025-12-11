@@ -403,7 +403,7 @@ $template_uri = get_template_directory_uri();
           </div>
         </div>
         <div class="p-info__flow-cta">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfnFdZuG51rfBCrjZxhDQHSpdluXFUm-l2KpDrQQ0NSWaHupw/viewform" target="_blank" rel="noopener noreferrer" class="c-button c-button--large">購入・相談はこちら</a>
+          <a href="<?php echo esc_url( 'https://docs.google.com/forms/d/e/1FAIpQLSfnFdZuG51rfBCrjZxhDQHSpdluXFUm-l2KpDrQQ0NSWaHupw/viewform' ); ?>" target="_blank" rel="noopener noreferrer" class="c-button c-button--large">購入・相談はこちら</a>
         </div>
       </div>
 
@@ -435,7 +435,14 @@ $template_uri = get_template_directory_uri();
       <div class="p-instagram__grid">
         <!-- Instagram埋め込みは後で実装 -->
       </div>
-      <p class="p-instagram__more"><a class="c-button" href="https://www.instagram.com/noukanomiseminori/" target="_blank" rel="noopener noreferrer">Instagramでもっと見る</a></p>
+      <p class="p-instagram__more"><a class="c-button" href="<?php echo esc_url( 'https://www.instagram.com/noukanomiseminori/' ); ?>" target="_blank" rel="noopener noreferrer">Instagramでもっと見る</a></p>
+
+      <h3 class="p-instagram__subtitle c-sec-title">インターパーク店</h3>
+      <div class="p-instagram__grid">
+          
+      </div>
+      <!-- WP化時：InstagramアカウントのURLを設定 -->
+      <p class="p-instagram__more"><a class="c-button" href="<?php echo esc_url( 'https://www.instagram.com/minori_kaboku_interpark/' ); ?>" target="_blank" rel="noopener noreferrer">Instagramでもっと見る</a></p>
     </div>
   </section>
 

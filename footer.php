@@ -25,13 +25,13 @@
         <div class="l-footer__section l-footer__section--shop">
           <h3 class="l-footer__title">ネット販売</h3>
           <p class="l-footer__shop-description">
-            <a href="https://www.rakuten.co.jp/kminori/" target="_blank" rel="noopener noreferrer" class="l-footer__shop-link">農家の店みのり楽天市場店</a>
+            <a href="<?php echo esc_url( 'https://www.rakuten.co.jp/kminori/' ); ?>" target="_blank" rel="noopener noreferrer" class="l-footer__shop-link">農家の店みのり楽天市場店</a>
           </p>
           <p class="l-footer__shop-description">
-            <a href="https://store.shopping.yahoo.co.jp/noyaku-com/" target="_blank" rel="noopener noreferrer" class="l-footer__shop-link">農薬ドットコム Yahoo!ショッピング</a>
+            <a href="<?php echo esc_url( 'https://store.shopping.yahoo.co.jp/noyaku-com/' ); ?>" target="_blank" rel="noopener noreferrer" class="l-footer__shop-link">農薬ドットコム Yahoo!ショッピング</a>
           </p>
           <p class="l-footer__shop-description">
-            <a href="https://www.amazon.co.jp/s?i=merchant-items&me=A2EFHFKX98OBK5" target="_blank" rel="noopener noreferrer" class="l-footer__shop-link">農家の店みのりAmazon店</a>
+            <a href="<?php echo esc_url( 'https://www.amazon.co.jp/s?i=merchant-items&me=A2EFHFKX98OBK5' ); ?>" target="_blank" rel="noopener noreferrer" class="l-footer__shop-link">農家の店みのりAmazon店</a>
           </p>
         </div>
 
@@ -40,11 +40,6 @@
             <div class="l-footer__social">
               <h4 class="l-footer__social-title">農家の店みのり楽天公式SNS</h4>
               <ul class="l-footer__social-list">
-                <li class="l-footer__social-item">
-                  <a href="#" class="l-footer__social-link" aria-label="Instagram">
-                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_instagram.svg' ); ?>" alt="" width="24" height="24">
-                  </a>
-                </li>
                 <li class="l-footer__social-item">
                   <a href="#" class="l-footer__social-link" aria-label="LINE">
                     <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_line.svg' ); ?>" alt="" width="24" height="24">
@@ -56,11 +51,6 @@
             <div class="l-footer__social">
               <h4 class="l-footer__social-title">農薬ドットコム公式SNS</h4>
               <ul class="l-footer__social-list">
-                <li class="l-footer__social-item">
-                  <a href="#" class="l-footer__social-link" aria-label="Instagram">
-                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_instagram.svg' ); ?>" alt="" width="24" height="24">
-                  </a>
-                </li>
                 <li class="l-footer__social-item">
                   <a href="#" class="l-footer__social-link" aria-label="LINE">
                     <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_line.svg' ); ?>" alt="" width="24" height="24">

@@ -354,7 +354,9 @@
   }
 
   // アクティブ状態のスタイル（緑の下線）
-  &__nav-item.is-active {
+  &__nav-item.is-active,
+  &__nav-item.current-menu-item,
+  &__nav-item.current_page_item {
     .l-header__nav-link {
       color: $color-primary;
       
