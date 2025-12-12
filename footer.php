@@ -41,7 +41,7 @@
               <h4 class="l-footer__social-title">農家の店みのり楽天公式SNS</h4>
               <ul class="l-footer__social-list">
                 <li class="l-footer__social-item">
-                  <a href="#" class="l-footer__social-link" aria-label="LINE">
+                  <a href="https://line.me/R/ti/p/%40467urwgf" target="_blank" rel="noopener noreferrer" class="l-footer__social-link" aria-label="LINE">
                     <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_line.svg' ); ?>" alt="" width="24" height="24">
                   </a>
                 </li>
@@ -52,7 +52,7 @@
               <h4 class="l-footer__social-title">農薬ドットコム公式SNS</h4>
               <ul class="l-footer__social-list">
                 <li class="l-footer__social-item">
-                  <a href="#" class="l-footer__social-link" aria-label="LINE">
+                  <a href="https://lin.ee/wwMqoVk" target="_blank" rel="noopener noreferrer" class="l-footer__social-link" aria-label="LINE">
                     <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_line.svg' ); ?>" alt="" width="24" height="24">
                   </a>
                 </li>

@@ -194,7 +194,10 @@ function minorihp_fallback_menu() {
     if ( ! is_front_page() ) {
         $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' ) : '';
         $is_news = ( $request_uri === 'news' || $request_uri === 'news/' ) 
-                || ( is_archive() && get_query_var( 'post_type' ) === 'post' )
+                || ( is_archive() && ( get_query_var( 'post_type' ) === 'post' || get_query_var( 'post_type' ) === '' ) )
+                || is_category()
+                || is_tag()
+                || is_date()
                 || ( is_home() && ! is_front_page() )
                 || is_singular( 'post' );
     }
