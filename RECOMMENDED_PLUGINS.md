@@ -65,17 +65,25 @@
 
 ## 便利なプラグイン（優先度低）
 
-### 9. **Duplicate Post**
+### 9. **Smash Balloon Instagram Feed** (または **Social Photo Feed**)
+- **用途**: Instagramフィードの表示
+- **理由**: サイトにInstagramの投稿を埋め込み表示。コーディング不要で簡単に実装可能
+- **インストール**: プラグイン → 新規追加 → 「Smash Balloon Instagram Feed」または「Social Photo Feed」で検索
+- **設定**: インストール後、Instagramアカウントに接続してフィードを作成
+- **注意**: 無料版は1つのフィードのみ作成可能。複数アカウントを表示する場合は有料版が必要
+- **詳細**: INSTAGRAM_SETUP.md を参照
+
+### 10. **Duplicate Post**
 - **用途**: 投稿・ページの複製
 - **理由**: 店舗ページなど、似た構造のページを作成する際に便利
 - **インストール**: プラグイン → 新規追加 → 「Duplicate Post」で検索
 
-### 10. **Regenerate Thumbnails**
+### 11. **Regenerate Thumbnails**
 - **用途**: サムネイル画像の再生成
 - **理由**: テーマ変更時や画像サイズ変更時に便利
 - **インストール**: プラグイン → 新規追加 → 「Regenerate Thumbnails」で検索
 
-### 11. **UpdraftPlus**
+### 12. **UpdraftPlus**
 - **用途**: バックアップ
 - **理由**: 定期的なバックアップでデータを保護
 - **インストール**: プラグイン → 新規追加 → 「UpdraftPlus」で検索

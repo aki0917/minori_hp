@@ -63,11 +63,13 @@ $template_uri = get_template_directory_uri();
 
   <?php
   // ニュースセクション（最新5件を表示）
+  // カスタム投稿タイプ「news」を対象にする
   $news_query = new WP_Query( array(
-    'post_type'      => 'post',
+    'post_type'      => 'news',
     'posts_per_page' => 5,
     'orderby'        => 'date',
     'order'          => 'DESC',
+    'post_status'    => 'publish',
   ) );
   ?>
   <section id="news" class="p-news" aria-labelledby="news-title">
@@ -81,10 +83,9 @@ $template_uri = get_template_directory_uri();
                 <time class="p-news__date" datetime="<?php echo esc_attr( get_the_date( 'Y-m-d' ) ); ?>"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?></time>
                 <?php
                 $categories = get_the_category();
-                if ( ! empty( $categories ) ) {
-                  echo '<span class="p-news__cat">' . esc_html( $categories[0]->name ) . '</span>';
-                }
+                $cat_name   = ! empty( $categories ) ? $categories[0]->name : 'お知らせ';
                 ?>
+                <span class="p-news__cat"><?php echo esc_html( $cat_name ); ?></span>
                 <span class="p-news__text"><?php the_title(); ?></span>
               </a>
             </li>
@@ -96,7 +97,7 @@ $template_uri = get_template_directory_uri();
             <a class="p-news__link" href="#">
               <time class="p-news__date" datetime="2025-10-30">2025.10.30</time>
               <span class="p-news__cat">お知らせ</span>
-              <span class="p-news__text">冬季営業時間のお知らせ</span>
+              <span class="p-news__text">test</span>
             </a>
           </li>
         </ul>
@@ -427,22 +428,85 @@ $template_uri = get_template_directory_uri();
   </section>
 
   <?php
-  // Instagramセクション（後で動的に実装可能）
+  // Instagramセクション（Instagram公式oEmbed使用）
+  // セキュリティと安定性を優先し、Instagram公式の埋め込み機能を使用しています。
+  // これにより、仕様変更や不具合の影響を最小限に抑えています。
+  
+  // フロントページに設定された固定ページのIDを取得
+  $front_page_id = get_option( 'page_on_front' );
+  if ( ! $front_page_id ) {
+    // フロントページが固定ページに設定されていない場合、0を返す
+    $front_page_id = 0;
+  }
   ?>
   <section id="instagram" class="p-instagram" aria-labelledby="instagram-title">
     <div class="p-instagram__inner">
       <h2 id="instagram-title" class="p-instagram__title c-sec-title">Instagram</h2>
-      <div class="p-instagram__grid">
-        <!-- Instagram埋め込みは後で実装 -->
-      </div>
-      <p class="p-instagram__more"><a class="c-button" href="<?php echo esc_url( 'https://www.instagram.com/noukanomiseminori/' ); ?>" target="_blank" rel="noopener noreferrer">Instagramでもっと見る</a></p>
+      
+      <?php
+      // メインアカウントの投稿URLを取得
+      $main_urls = array();
+      if ( function_exists( 'get_field' ) && $front_page_id ) {
+        $url1 = get_field( 'instagram_post_url_main_1', $front_page_id );
+        $url2 = get_field( 'instagram_post_url_main_2', $front_page_id );
+        $url3 = get_field( 'instagram_post_url_main_3', $front_page_id );
+        $main_urls = array_filter( array( $url1, $url2, $url3 ) );
+      }
+      ?>
+      
+      <?php if ( ! empty( $main_urls ) ) : ?>
+        <div class="p-instagram__list">
+          <?php foreach ( $main_urls as $url ) : ?>
+            <?php
+            // Instagram公式oEmbed APIを直接呼び出し
+            $embed_code = minorihp_get_instagram_embed( $url );
+            if ( $embed_code ) :
+              ?>
+              <div class="p-instagram__item">
+                <?php echo $embed_code; ?>
+              </div>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      
+      <p class="p-instagram__more">
+        <a class="c-button" href="<?php echo esc_url( 'https://www.instagram.com/noukanomiseminori/' ); ?>" target="_blank" rel="noopener noreferrer">Instagramでもっと見る</a>
+      </p>
 
       <h3 class="p-instagram__subtitle c-sec-title">インターパーク店</h3>
-      <div class="p-instagram__grid">
-          
-      </div>
-      <!-- WP化時：InstagramアカウントのURLを設定 -->
-      <p class="p-instagram__more"><a class="c-button" href="<?php echo esc_url( 'https://www.instagram.com/minori_kaboku_interpark/' ); ?>" target="_blank" rel="noopener noreferrer">Instagramでもっと見る</a></p>
+      
+      <?php
+      // インターパーク店アカウントの投稿URLを取得
+      $interpark_urls = array();
+      if ( function_exists( 'get_field' ) && $front_page_id ) {
+        $interpark_urls = array_filter( array(
+          get_field( 'instagram_post_url_interpark_1', $front_page_id ),
+          get_field( 'instagram_post_url_interpark_2', $front_page_id ),
+          get_field( 'instagram_post_url_interpark_3', $front_page_id ),
+        ) );
+      }
+      ?>
+      
+      <?php if ( ! empty( $interpark_urls ) ) : ?>
+        <div class="p-instagram__list">
+          <?php foreach ( $interpark_urls as $url ) : ?>
+            <?php
+            // Instagram公式oEmbed APIを直接呼び出し
+            $embed_code = minorihp_get_instagram_embed( $url );
+            if ( $embed_code ) :
+              ?>
+              <div class="p-instagram__item">
+                <?php echo $embed_code; ?>
+              </div>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      
+      <p class="p-instagram__more">
+        <a class="c-button" href="<?php echo esc_url( 'https://www.instagram.com/minori_kaboku_interpark/' ); ?>" target="_blank" rel="noopener noreferrer">Instagramでもっと見る</a>
+      </p>
     </div>
   </section>
 

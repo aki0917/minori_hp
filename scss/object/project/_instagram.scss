@@ -64,6 +64,24 @@
     }
   }
 
+  // oEmbed用のリスト（Instagram公式埋め込み）
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: $spacing-medium;
+    margin-bottom: $spacing-xl;
+
+    @include up(tab) {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: $spacing-large;
+      margin-bottom: $spacing-xxl;
+    }
+
+    @include up(pc) {
+      gap: $spacing-xl;
+    }
+  }
+
   &__item {
     position: relative;
     overflow: hidden;
@@ -82,6 +100,18 @@
 
       .p-instagram__link::after {
         opacity: 1;
+      }
+    }
+
+    // oEmbed用のスタイル（Instagram公式埋め込みiframe）
+    iframe {
+      width: 100% !important;
+      max-width: 100%;
+      border-radius: 12px;
+      display: block;
+
+      @include up(tab) {
+        border-radius: 16px;
       }
     }
   }

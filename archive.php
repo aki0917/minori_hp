@@ -14,18 +14,30 @@ get_header();
       <div class="p-news__container">
         <div class="p-news__main">
           <h2 class="p-news__title c-sec-title">お知らせ</h2>
-          <?php if ( have_posts() ) : ?>
+          <?php
+          // お知らせ（news カスタム投稿）のアーカイブ専用クエリ
+          $paged      = max( 1, get_query_var( 'paged' ) );
+          $news_query = new WP_Query(
+            array(
+              'post_type'      => 'news',
+              'posts_per_page' => get_query_var( 'posts_per_page' ),
+              'paged'          => $paged,
+              'orderby'        => 'date',
+              'order'          => 'DESC',
+            )
+          );
+          ?>
+          <?php if ( $news_query->have_posts() ) : ?>
             <ul class="p-news__list">
-              <?php while ( have_posts() ) : the_post(); ?>
+              <?php while ( $news_query->have_posts() ) : $news_query->the_post(); ?>
               <li class="p-news__item">
                 <a class="p-news__link" href="<?php the_permalink(); ?>">
                   <time class="p-news__date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?></time>
                   <?php
                   $categories = get_the_category();
-                  if ( ! empty( $categories ) ) :
+                  $cat_name   = ! empty( $categories ) ? $categories[0]->name : 'お知らせ';
                   ?>
-                    <span class="p-news__cat"><?php echo esc_html( $categories[0]->name ); ?></span>
-                  <?php endif; ?>
+                  <span class="p-news__cat"><?php echo esc_html( $cat_name ); ?></span>
                   <span class="p-news__text"><?php the_title(); ?></span>
                 </a>
               </li>
@@ -42,6 +54,7 @@ get_header();
               );
               ?>
             </div>
+            <?php wp_reset_postdata(); ?>
           <?php else : ?>
             <p class="p-news__empty">現在、お知らせはありません。</p>
           <?php endif; ?>
@@ -50,28 +63,6 @@ get_header();
         <aside class="p-news__sidebar">
           <div class="p-news-sidebar">
             <div class="p-news-sidebar__widget">
-              <h3 class="p-news-sidebar__title">カテゴリー</h3>
-              <ul class="p-news-sidebar__list">
-                <?php
-                $categories = get_categories();
-                if ( ! empty( $categories ) ) :
-                  foreach ( $categories as $category ) :
-                ?>
-                  <li class="p-news-sidebar__item">
-                    <a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>" class="p-news-sidebar__link">
-                      <?php echo esc_html( $category->name ); ?>
-                    </a>
-                  </li>
-                <?php
-                  endforeach;
-                else :
-                ?>
-                  <li class="p-news-sidebar__item">カテゴリーはまだありません。</li>
-                <?php endif; ?>
-              </ul>
-            </div>
-
-            <div class="p-news-sidebar__widget">
               <h3 class="p-news-sidebar__title">最新記事</h3>
               <ul class="p-news-sidebar__list">
                 <?php
@@ -79,6 +70,7 @@ get_header();
                   array(
                     'numberposts' => 5,
                     'post_status' => 'publish',
+                    'post_type'   => 'news',
                   )
                 );
                 if ( ! empty( $recent_posts ) ) :
@@ -113,6 +105,7 @@ get_header();
                     'format'    => 'custom',
                     'before'    => '<li class="p-news-sidebar__item">',
                     'after'     => '</li>',
+                    'post_type' => 'news',
                   )
                 );
                 echo wp_kses_post( $archives );
@@ -127,4 +120,3 @@ get_header();
 </main>
 
 <?php get_footer(); ?>
-

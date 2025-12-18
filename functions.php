@@ -101,6 +101,40 @@ function minorihp_register_post_types() {
             'show_ui'            => true,
         )
     );
+
+    // お知らせ
+    $news_labels = array(
+        'name'               => 'お知らせ',
+        'singular_name'      => 'お知らせ',
+        'menu_name'          => 'お知らせ',
+        'name_admin_bar'     => 'お知らせ',
+        'add_new'            => '新規追加',
+        'add_new_item'       => 'お知らせを追加',
+        'new_item'           => '新規お知らせ',
+        'edit_item'          => 'お知らせを編集',
+        'view_item'          => 'お知らせを表示',
+        'all_items'          => 'お知らせ一覧',
+        'search_items'       => 'お知らせを検索',
+        'not_found'          => 'お知らせが見つかりません',
+        'not_found_in_trash' => 'ゴミ箱にお知らせはありません',
+    );
+
+    register_post_type(
+        'news',
+        array(
+            'labels'             => $news_labels,
+            'public'             => true,
+            'has_archive'        => 'news',
+            'show_in_rest'       => true,
+            'menu_position'      => 21,
+            'menu_icon'          => 'dashicons-megaphone',
+            'rewrite'            => array( 'slug' => 'news', 'with_front' => false ),
+            'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+            'publicly_queryable' => true,
+            'show_ui'            => true,
+            'taxonomies'         => array( 'category' ),
+        )
+    );
 }
 add_action( 'init', 'minorihp_register_post_types' );
 
@@ -112,110 +146,62 @@ function minorihp_menus() {
 }
 add_action( 'init', 'minorihp_menus' );
 
-// /news のURLで投稿アーカイブを表示するためのリライトルールを追加
-function minorihp_add_news_rewrite_rule() {
-    add_rewrite_rule( '^news/?$', 'index.php?post_type=post', 'top' );
-    add_rewrite_rule( '^news/page/([0-9]+)/?$', 'index.php?post_type=post&paged=$matches[1]', 'top' );
-}
-add_action( 'init', 'minorihp_add_news_rewrite_rule' );
-
-// リライトルールのフラッシュ（初回のみ実行）
-function minorihp_flush_rewrite_rules_once() {
-    if ( ! get_option( 'minorihp_rewrite_rules_flushed' ) ) {
-        minorihp_add_news_rewrite_rule();
-        flush_rewrite_rules();
-        update_option( 'minorihp_rewrite_rules_flushed', true );
+/**
+ * グローバルナビの現在ページにアクティブクラスを付与
+ *
+ * - WordPress が自動で付ける `current-menu-item` や
+ *   `current_page_item`, `current-menu-ancestor` などのクラスを元に
+ *   独自クラス `is-active` を追加します。
+ * - CSS では `.l-header__nav-item.is-active .l-header__nav-link::after`
+ *   によって下線を表示するため、このクラスが付けば
+ *   各ページ滞在時に下線が出るようになります。
+ */
+function minorihp_primary_nav_active_class( $classes, $item, $args ) {
+    // ヘッダーのプライマリーメニュー以外には影響させない
+    if ( empty( $args->theme_location ) || 'primary' !== $args->theme_location ) {
+        return $classes;
     }
-}
-add_action( 'init', 'minorihp_flush_rewrite_rules_once', 20 );
 
-// /news のリクエスト時にクエリを修正
-function minorihp_news_pre_get_posts( $query ) {
-    if ( ! is_admin() && $query->is_main_query() ) {
-        $request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
-        if ( $request_uri === 'news' || $request_uri === 'news/' ) {
-            $query->set( 'post_type', 'post' );
-            $query->set( 'posts_per_page', get_option( 'posts_per_page' ) );
-            $query->is_home = false;
-            $query->is_archive = true;
-            $query->is_post_type_archive = true;
-        }
-    }
-}
-add_action( 'pre_get_posts', 'minorihp_news_pre_get_posts' );
+    $current_classes = array(
+        'current-menu-item',
+        'current_page_item',
+        'current-menu-parent',
+        'current_page_parent',
+        'current-menu-ancestor',
+        'current_page_ancestor',
+        'current-post-ancestor',
+        'current-post-parent',
+        'current-post-type-archive',
+    );
 
-// /news のリクエスト時に archive.php テンプレートを強制的に使用
-function minorihp_news_template_include( $template ) {
-    $request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
-    if ( $request_uri === 'news' || $request_uri === 'news/' ) {
-        $archive_template = locate_template( 'archive.php' );
-        if ( $archive_template ) {
-            return $archive_template;
-        }
+    if ( array_intersect( $current_classes, $classes ) ) {
+        $classes[] = 'is-active';
     }
-    return $template;
-}
-add_filter( 'template_include', 'minorihp_news_template_include' );
 
-// お知らせページのURLを取得する関数
-function minorihp_get_news_url() {
-    // /news のURLを返す
-    return home_url( '/news' );
+    return $classes;
 }
-
-// メニュー項目のURLを修正（お知らせリンクを確実に正しいURLにする）
-function minorihp_fix_menu_item_urls( $items, $args ) {
-    if ( ! isset( $args->theme_location ) || $args->theme_location !== 'primary' ) {
-        return $items;
-    }
-    
-    // お知らせの正しいURLを取得
-    $news_url = minorihp_get_news_url();
-    
-    foreach ( $items as $item ) {
-        // 「お知らせ」というタイトルを含むメニュー項目を検索
-        if ( stripos( $item->title, 'お知らせ' ) !== false ) {
-            // 常に /news のURLに修正
-            $item->url = $news_url;
-        }
-    }
-    
-    return $items;
-}
-add_filter( 'wp_nav_menu_objects', 'minorihp_fix_menu_item_urls', 10, 2 );
+add_filter( 'nav_menu_css_class', 'minorihp_primary_nav_active_class', 10, 3 );
 
 // フォールバックメニュー（メニューが設定されていない場合）
 function minorihp_fallback_menu() {
-    // 現在のページを判定
-    $is_about = is_page_template( 'page-about.php' ) || ( is_page() && strpos( get_permalink(), '/about' ) !== false );
-    
-    // お知らせの判定：トップページの場合は除外
-    $is_news = false;
-    if ( ! is_front_page() ) {
-        $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' ) : '';
-        $is_news = ( $request_uri === 'news' || $request_uri === 'news/' ) 
-                || ( is_archive() && ( get_query_var( 'post_type' ) === 'post' || get_query_var( 'post_type' ) === '' ) )
-                || is_category()
-                || is_tag()
-                || is_date()
-                || ( is_home() && ! is_front_page() )
-                || is_singular( 'post' );
-    }
-    
-    $is_shop = is_page_template( 'page-shop.php' ) || is_post_type_archive( 'shop' ) || is_singular( 'shop' ) || ( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], '/shop' ) !== false );
+    // 各リンクごとに「現在ページかどうか」を判定
+    $is_home_active  = is_front_page();
+    $is_about_active = is_page( 'about' ) || is_page_template( 'page-about.php' );
+    $is_shop_active  = is_page( 'shop' ) || is_page_template( 'page-shop.php' ) || is_singular( 'shop' );
+    $is_news_active  = is_post_type_archive( 'news' ) || is_singular( 'news' );
     ?>
     <ul class="l-header__nav-list">
-        <li class="l-header__nav-item <?php echo is_front_page() ? 'is-active' : ''; ?>">
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="l-header__nav-link" <?php echo is_front_page() ? 'aria-current="page"' : ''; ?>>トップ</a>
+        <li class="l-header__nav-item <?php echo $is_home_active ? 'is-active' : ''; ?>">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="l-header__nav-link" <?php echo $is_home_active ? 'aria-current="page"' : ''; ?>>トップ</a>
         </li>
-        <li class="l-header__nav-item <?php echo $is_about ? 'is-active' : ''; ?>">
-            <a href="<?php echo esc_url( home_url( '/about' ) ); ?>" class="l-header__nav-link" <?php echo $is_about ? 'aria-current="page"' : ''; ?>>会社概要</a>
+        <li class="l-header__nav-item <?php echo $is_about_active ? 'is-active' : ''; ?>">
+            <a href="<?php echo esc_url( home_url( '/about' ) ); ?>" class="l-header__nav-link" <?php echo $is_about_active ? 'aria-current="page"' : ''; ?>>会社概要</a>
         </li>
-        <li class="l-header__nav-item <?php echo $is_news ? 'is-active' : ''; ?>">
-            <a href="<?php echo esc_url( minorihp_get_news_url() ); ?>" class="l-header__nav-link" <?php echo $is_news ? 'aria-current="page"' : ''; ?>>お知らせ</a>
+        <li class="l-header__nav-item <?php echo $is_news_active ? 'is-active' : ''; ?>">
+            <a href="<?php echo esc_url( home_url( '/news' ) ); ?>" class="l-header__nav-link" <?php echo $is_news_active ? 'aria-current="page"' : ''; ?>>お知らせ</a>
         </li>
-        <li class="l-header__nav-item <?php echo $is_shop ? 'is-active' : ''; ?>">
-            <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="l-header__nav-link" <?php echo $is_shop ? 'aria-current="page"' : ''; ?>>店舗一覧</a>
+        <li class="l-header__nav-item <?php echo $is_shop_active ? 'is-active' : ''; ?>">
+            <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="l-header__nav-link" <?php echo $is_shop_active ? 'aria-current="page"' : ''; ?>>店舗一覧</a>
         </li>
         <li class="l-header__nav-item">
             <a href="<?php echo esc_url( 'https://kkminori-recruit.jp/-/top/' ); ?>" target="_blank" rel="noopener noreferrer" class="l-header__nav-link">募集要項</a>
@@ -223,4 +209,60 @@ function minorihp_fallback_menu() {
     </ul>
     <?php
 }
+
+/**
+ * Instagram 投稿の埋め込み HTML を取得するヘルパー
+ *
+ * Instagram Graph API やトークンは一切使わず、
+ * Instagram公式の埋め込みコード＋`embed.js` だけで表示します。
+ * （＝oEmbed APIも使わない、安全でシンプルな方式）
+ *
+ * @param string $url Instagram の投稿 URL（例: https://www.instagram.com/p/XXXX/）
+ * @return string 埋め込み用 HTML。失敗時は false。
+ */
+if ( ! function_exists( 'minorihp_get_instagram_embed' ) ) {
+	function minorihp_get_instagram_embed( $url ) {
+		if ( empty( $url ) ) {
+			return false;
+		}
+		
+		// URLを正規化（末尾のスラッシュを削除）
+		$url = rtrim( $url, '/' );
+		
+		// Instagramの埋め込みコードを生成（Instagram公式の埋め込み形式）
+		$embed_code = sprintf(
+			'<blockquote class="instagram-media" data-instgrm-permalink="%s/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:99.375%%;width:-webkit-calc(100%% - 2px);width:calc(100%% - 2px);">
+				<div style="padding:16px;">
+					<a href="%s/" style="background:#FFFFFF;line-height:0;padding:0;text-align:center;text-decoration:none;width:100%%;" target="_blank" rel="noopener noreferrer">
+						<div style="display:flex;flex-direction:row;align-items:center;">
+							<div style="background-color:#F4F4F4;border-radius:50%%;flex-grow:0;height:40px;margin-right:14px;width:40px;"></div>
+							<div style="display:flex;flex-direction:column;flex-grow:1;justify-content:center;">
+								<div style="background-color:#F4F4F4;border-radius:4px;flex-grow:0;height:14px;margin-bottom:6px;width:100px;"></div>
+								<div style="background-color:#F4F4F4;border-radius:4px;flex-grow:0;height:14px;width:60px;"></div>
+							</div>
+						</div>
+						<div style="padding:19%% 0;"></div>
+						<div style="display:block;height:50px;margin:0 auto 12px;width:50px;">
+							<svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+								<g fill="#000"><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.997 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.997 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.853 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.853 570.966,40.831 570.82,37.631"/></g></g></svg>
+						</div>
+					</a>
+				</div>
+			</blockquote>',
+			esc_url( $url ),
+			esc_url( $url )
+		);
+		
+		return $embed_code;
+	}
+}
+
+/**
+ * Instagram 埋め込み用の公式スクリプトを読み込む
+ * （`minorihp_get_instagram_embed()` が出力する blockquote を動的に変換）
+ */
+function minorihp_enqueue_instagram_embed_script() {
+	wp_enqueue_script( 'instagram-embed', 'https://www.instagram.com/embed.js', array(), null, true );
+}
+add_action( 'wp_enqueue_scripts', 'minorihp_enqueue_instagram_embed_script' );
 

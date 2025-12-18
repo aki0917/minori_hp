@@ -17,7 +17,14 @@
           <h3 class="l-footer__title">各種お取り引き</h3>
           <nav class="l-footer__nav">
             <ul class="l-footer__nav-list">
-              <li class="l-footer__nav-item"><a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="l-footer__nav-link">商材募集</a></li>
+              <li class="l-footer__nav-item">
+                <a
+                  href="<?php echo esc_url( 'https://docs.google.com/forms/d/e/1FAIpQLSfsL5eu1lI5o3qSn2G_DAv5XI0kKAHuCSO-j2fSJIzixRBDxQ/viewform' ); ?>"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="l-footer__nav-link"
+                >商材募集</a>
+              </li>
             </ul>
           </nav>
         </div>

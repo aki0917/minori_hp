@@ -20,12 +20,6 @@ get_header();
                 <time class="p-news-detail__date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
                   <?php echo esc_html( get_the_date( 'Y年n月j日' ) ); ?>
                 </time>
-                <?php
-                $categories = get_the_category();
-                if ( ! empty( $categories ) ) :
-                ?>
-                  <span class="p-news-detail__cat"><?php echo esc_html( $categories[0]->name ); ?></span>
-                <?php endif; ?>
               </div>
               <h1 class="p-news-detail__title"><?php the_title(); ?></h1>
             </header>
@@ -34,15 +28,18 @@ get_header();
               <?php the_content(); ?>
             </div>
 
+            <?php
+            // カスタム投稿タイプを含めた前後ナビゲーション（WP標準関数を使用）
+            $prev_post = get_adjacent_post( false, '', true );
+            $next_post = get_adjacent_post( false, '', false );
+            ?>
+
             <nav class="p-news-detail__navigation" aria-label="記事ナビゲーション">
               <div class="p-news-detail__nav-item p-news-detail__nav-item--prev">
-                <?php
-                $prev = get_previous_post();
-                if ( $prev ) :
-                ?>
-                  <a href="<?php echo esc_url( get_permalink( $prev->ID ) ); ?>" class="p-news-detail__nav-link">
+                <?php if ( $prev_post ) : ?>
+                  <a href="<?php echo esc_url( get_permalink( $prev_post->ID ) ); ?>" class="p-news-detail__nav-link">
                     <span class="p-news-detail__nav-label">前の記事</span>
-                    <span class="p-news-detail__nav-title"><?php echo esc_html( get_the_title( $prev->ID ) ); ?></span>
+                    <span class="p-news-detail__nav-title"><?php echo esc_html( get_the_title( $prev_post->ID ) ); ?></span>
                   </a>
                 <?php else : ?>
                   <span class="p-news-detail__nav-link" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">
@@ -52,13 +49,10 @@ get_header();
                 <?php endif; ?>
               </div>
               <div class="p-news-detail__nav-item p-news-detail__nav-item--next">
-                <?php
-                $next = get_next_post();
-                if ( $next ) :
-                ?>
-                  <a href="<?php echo esc_url( get_permalink( $next->ID ) ); ?>" class="p-news-detail__nav-link">
+                <?php if ( $next_post ) : ?>
+                  <a href="<?php echo esc_url( get_permalink( $next_post->ID ) ); ?>" class="p-news-detail__nav-link">
                     <span class="p-news-detail__nav-label">次の記事</span>
-                    <span class="p-news-detail__nav-title"><?php echo esc_html( get_the_title( $next->ID ) ); ?></span>
+                    <span class="p-news-detail__nav-title"><?php echo esc_html( get_the_title( $next_post->ID ) ); ?></span>
                   </a>
                 <?php else : ?>
                   <span class="p-news-detail__nav-link" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">
@@ -70,34 +64,12 @@ get_header();
             </nav>
 
             <footer class="p-news-detail__footer">
-              <a href="<?php echo esc_url( minorihp_get_news_url() ); ?>" class="p-news-detail__back-to-list">お知らせ一覧に戻る</a>
+              <a href="<?php echo esc_url( home_url( '/news' ) ); ?>" class="p-news-detail__back-to-list">お知らせ一覧に戻る</a>
             </footer>
           </div>
 
           <aside class="p-news-detail__sidebar">
             <div class="p-news-sidebar">
-              <div class="p-news-sidebar__widget">
-                <h3 class="p-news-sidebar__title">カテゴリー</h3>
-                <ul class="p-news-sidebar__list">
-                  <?php
-                  $categories = get_categories();
-                  if ( ! empty( $categories ) ) :
-                    foreach ( $categories as $category ) :
-                  ?>
-                    <li class="p-news-sidebar__item">
-                      <a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>" class="p-news-sidebar__link">
-                        <?php echo esc_html( $category->name ); ?>
-                      </a>
-                    </li>
-                  <?php
-                    endforeach;
-                  else :
-                  ?>
-                    <li class="p-news-sidebar__item">カテゴリーはまだありません。</li>
-                  <?php endif; ?>
-                </ul>
-              </div>
-
               <div class="p-news-sidebar__widget">
                 <h3 class="p-news-sidebar__title">最新記事</h3>
                 <ul class="p-news-sidebar__list">
@@ -106,6 +78,7 @@ get_header();
                     array(
                       'numberposts' => 5,
                       'post_status' => 'publish',
+                      'post_type'   => get_post_type(),
                     )
                   );
                   if ( ! empty( $recent_posts ) ) :
@@ -134,12 +107,13 @@ get_header();
                   <?php
                   $archives = wp_get_archives(
                     array(
-                      'type'   => 'monthly',
-                      'limit'  => 6,
-                      'echo'   => false,
-                      'format' => 'custom',
-                      'before' => '<li class="p-news-sidebar__item">',
-                      'after'  => '</li>',
+                      'type'      => 'monthly',
+                      'limit'     => 6,
+                      'echo'      => false,
+                      'format'    => 'custom',
+                      'before'    => '<li class="p-news-sidebar__item">',
+                      'after'     => '</li>',
+                      'post_type' => get_post_type(),
                     )
                   );
                   echo wp_kses_post( $archives );
@@ -156,4 +130,3 @@ get_header();
 </main>
 
 <?php get_footer(); ?>
-

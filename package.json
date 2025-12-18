@@ -6,7 +6,8 @@
     "dev": "live-server --port=8000 --open=/index.html",
     "start": "http-server -p 8000 -o",
     "compile:scss": "sass scss/style.scss css/style.css",
-    "watch:scss": "sass --watch scss/style.scss:css/style.css"
+    "watch:scss": "sass --watch scss/style.scss:css/style.css",
+    "sync": "bash sync-theme.sh"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
