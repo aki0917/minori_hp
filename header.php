@@ -198,7 +198,7 @@
     <a href="<?php echo esc_url( 'https://www.instagram.com/minori_kaboku_interpark/' ); ?>" target="_blank" rel="noopener noreferrer" class="social__link" aria-label="Instagram">
       <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_instagram.svg' ); ?>" alt="" width="24" height="24">
     </a>
-    <a href="#" class="social__link" aria-label="LINE">
+    <a href="<?php echo esc_url( 'https://lin.ee/Ri3brQ9' ); ?>" target="_blank" rel="noopener noreferrer" class="social__link" aria-label="LINE">
       <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icon/icon_line.svg' ); ?>" alt="" width="24" height="24">
     </a>
   </aside>
