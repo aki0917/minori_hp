@@ -62,11 +62,11 @@ $template_uri = get_template_directory_uri();
   </section>
 
   <?php
-  // ニュースセクション（最新5件を表示）
+  // ニュースセクション（最新3件を表示）
   // カスタム投稿タイプ「news」を対象にする
   $news_query = new WP_Query( array(
     'post_type'      => 'news',
-    'posts_per_page' => 5,
+    'posts_per_page' => 3,
     'orderby'        => 'date',
     'order'          => 'DESC',
     'post_status'    => 'publish',

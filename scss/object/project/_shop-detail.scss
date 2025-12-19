@@ -16,10 +16,10 @@
   &__inner {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 0 $spacing-medium; // 16px
+    padding: 0 $spacing-medium;
 
-    @include up(tab) { padding: 0 $spacing-large; } // 24px
-    @include up(pc) { padding: 0 $spacing-xl; }   // 32px
+    @include up(tab) { padding: 0 $spacing-large; }
+    @include up(pc) { padding: 0 $spacing-xl; }
   }
 
   &__breadcrumb {

@@ -37,12 +37,10 @@
     position: relative;
   }
 
-  // プログレスバー（縦線）- JavaScriptで動的に作成されるため、ここでは非表示
   &__list::before {
     display: none;
   }
 
-  // JavaScriptで作成されるプログレスバーのスタイル
   &__progress-bar {
     position: absolute;
     left: 50%;
@@ -68,7 +66,6 @@
     align-items: flex-start;
     gap: $spacing-xl;
 
-    // 中央のドット（プログレスバーの位置）
     &::before {
       content: '';
       position: absolute;
@@ -85,7 +82,6 @@
       transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    // アニメーション用クラス
     &--hidden::before {
       transform: translate(-50%, 0) scale(0);
     }
@@ -94,7 +90,6 @@
       transform: translate(-50%, 0) scale(1);
     }
 
-    // 最後のアイテムの後は線を表示しない
     &:last-child {
       margin-bottom: 0;
       

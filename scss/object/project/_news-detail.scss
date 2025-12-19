@@ -16,14 +16,13 @@
   &__inner {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 $spacing-medium; // 16px
+    padding: 0 $spacing-medium;
 
-    @include up(tab) { padding: 0 $spacing-large; } // 24px
-    @include up(pc) { padding: 0 $spacing-xl; }   // 32px
-    @include up(pc-large) { padding: 0 $spacing-xxl; }  // 40px
+    @include up(tab) { padding: 0 $spacing-large; }
+    @include up(pc) { padding: 0 $spacing-xl; }
+    @include up(pc-large) { padding: 0 $spacing-xxl; }
   }
 
-  // コンテナ（メイン + サイドバー）
   &__container {
     display: grid;
     grid-template-columns: 1fr;
@@ -35,14 +34,12 @@
     }
   }
 
-  // メインコンテンツ
   &__main {
-    min-width: 0; // グリッドアイテムのオーバーフロー対策
+    min-width: 0;
   }
 
-  // サイドバー
   &__sidebar {
-    min-width: 0; // グリッドアイテムのオーバーフロー対策
+    min-width: 0;
   }
 
   &__back {
@@ -67,7 +64,6 @@
       padding: $spacing-medium $spacing-large;
     }
 
-    // ホバー時の背景アニメーション
     &::after {
       content: '';
       position: absolute;
@@ -177,7 +173,6 @@
       line-height: 2;
     }
 
-    // 見出しスタイル
     h2 {
       font-size: 22px;
       font-weight: 700;
@@ -212,7 +207,6 @@
       }
     }
 
-    // 段落スタイル
     p {
       font-size: $font-size-small;
       margin-bottom: $spacing-large;
@@ -225,7 +219,6 @@
       }
     }
 
-    // リストスタイル
     ul, ol {
       margin-bottom: $spacing-large;
       padding-left: $spacing-xl;
@@ -259,7 +252,6 @@
       list-style: decimal;
     }
 
-    // 画像スタイル
     img {
       width: 100%;
       height: auto;
@@ -273,7 +265,6 @@
       }
     }
 
-    // 画像を中央に配置する場合のラッパー
     .p-news-detail__image-wrapper {
       text-align: center;
       margin: $spacing-xl 0;
@@ -289,7 +280,6 @@
         margin: 0;
       }
 
-      // キャプション
       .p-news-detail__image-caption {
         font-size: $font-size-small;
         color: $color-text-light;
@@ -302,13 +292,11 @@
       }
     }
 
-    // 強調テキスト
     strong {
       font-weight: 700;
       color: $color-text;
     }
 
-    // リンクスタイル
     a {
       color: $color-primary;
       text-decoration: underline;
@@ -319,7 +307,6 @@
       }
     }
 
-    // 引用スタイル
     blockquote {
       border-left: 4px solid $color-primary;
       padding-left: $spacing-large;
@@ -400,7 +387,6 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    // 無効なリンク（記事が存在しない場合）
     &[href="#"] {
       opacity: 0.5;
       cursor: not-allowed;
@@ -414,7 +400,6 @@
     }
   }
 
-  // span要素で無効なリンクを表現する場合（記事が存在しない場合）
   &__nav-link[style*="opacity"] {
     opacity: 0.5 !important;
     cursor: not-allowed;

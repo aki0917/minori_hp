@@ -72,20 +72,20 @@
   }
 
   &__description {
-    font-size: $font-size-small; // モバイル: 14px
-    line-height: 1.7; // モバイル: 1.7
+    font-size: 13px;
+    line-height: 1.7;
     color: $color-text;
     margin-top: $spacing-large;
     margin-bottom: 0;
     text-align: center;
 
     @include up(tab) {
-      font-size: $font-size-base; // タブレット: 16px
+      font-size: $font-size-base;
       line-height: 1.8;
     }
 
     @include up(pc) {
-      font-size: $font-size-large; // PC: 18px
+      font-size: $font-size-large;
       line-height: 1.9;
     }
   }
@@ -124,26 +124,25 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
 
-    // 上部に緑の帯（カード風デザイン）
     &::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 48px; // 太い緑の帯
+      height: 48px;
       background: linear-gradient(90deg, $color-secondary 0%, $color-primary 100%);
-      border-radius: 16px 16px 0 0; // 上部の角丸
+      border-radius: 16px 16px 0 0;
       z-index: 1;
     }
   }
 
   &__card-label {
     position: absolute;
-    top: 10px; // モバイル: 10px
+    top: 10px;
     right: $spacing-medium;
-    color: #FFD700; // 黄色（実物のカードに合わせて）
-    font-size: 14px; // モバイル: 14px
+    color: #FFD700;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -151,13 +150,13 @@
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
     @include up(tab) {
-      font-size: 16px; // タブレット: 16px
+      font-size: 16px;
       top: 12px;
       right: $spacing-large;
     }
 
     @include up(pc) {
-      font-size: 18px; // PC: 18px
+      font-size: 18px;
       top: 14px;
     }
   }
@@ -210,7 +209,7 @@
     height: 24px;
     background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
     color: $color-white;
-    font-size: 18px; // モバイル: 18px
+    font-size: 18px;
     font-weight: 700;
     border-radius: 50%;
     margin-bottom: $spacing-small;
@@ -224,9 +223,9 @@
     }
 
     @include up(pc) {
-      width: 48px; // PC: 48px
+      width: 48px;
       height: 48px;
-      font-size: 24px; // PC: 24px
+      font-size: 24px;
     }
   }
 
@@ -254,12 +253,12 @@
     margin: 0;
 
     @include up(tab) {
-      font-size: 10px; // タブレット: 14px
+      font-size: 10px;
       line-height: 1.8;
     }
 
     @include up(pc) {
-      font-size: $font-size-base; // PC: 16px
+      font-size: $font-size-base;
       line-height: 1.9;
     }
   }

@@ -3,7 +3,7 @@
    ======================================== */
 
 .social {
-  display: none; // モバイルでは非表示
+  display: none;
   position: fixed;
   top: 50%;
   z-index: 50;
@@ -15,19 +15,15 @@
   backdrop-filter: blur(8px);
   border-radius: 0 12px 12px 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  // 初期状態はJavaScript（GSAP）で制御
-
   @include up(tab) {
-    display: flex; // タブレット以上で表示
+    display: flex;
   }
 
-  // 左側（本店）
   &--left {
     left: 0;
     border-radius: 0 12px 12px 0;
   }
 
-  // 右側（別店舗）
   &--right {
     right: 0;
     border-radius: 12px 0 0 12px;

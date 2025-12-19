@@ -18,7 +18,7 @@
   }
 
   &__title {
-    font-size: 24px; // モバイル: 24px
+    font-size: 24px;
     font-weight: 700;
     color: $color-text;
     text-align: center;
@@ -26,12 +26,12 @@
     margin-bottom: $spacing-large;
 
     @include up(tab) {
-      font-size: 28px; // タブレット: 28px
+      font-size: 28px;
       margin-bottom: $spacing-xl;
     }
 
     @include up(pc) {
-      font-size: 32px; // PC: 32px
+      font-size: 32px;
     }
   }
 
@@ -53,13 +53,12 @@
     align-items: start;
 
     @include up(tab) {
-      grid-template-columns: 1fr 1fr; // 50% 50%
+      grid-template-columns: 1fr 1fr;
     }
 
-    // 偶数番目は画像とテキストの位置を反転
     &:nth-child(even) {
       @include up(tab) {
-        grid-template-columns: 1fr 1fr; // 50% 50%
+        grid-template-columns: 1fr 1fr;
 
         .p-items__image {
           order: 2;
@@ -72,7 +71,6 @@
     }
   }
 
-  // p-itemsセクション内の画像のみ円形にする（p-items-card内は除外）
   &__item &__image {
     width: 100%;
     max-width: 230px;
@@ -97,7 +95,6 @@
       max-width: 400px;
     }
 
-    // ホバー時のエフェクト
     &:hover {
       transform: scale(1.05);
       box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3), 0 0 0 6px rgba($color-primary, 0.15);
@@ -123,11 +120,11 @@
     margin: 0;
     
     @include up(tab) {
-      font-size: 22px; // タブレット: 22px
+      font-size: 22px;
     }
 
     @include up(pc) {
-      font-size: 24px; // PC: 24px
+      font-size: 24px;
     }
     
     &::after {
@@ -221,17 +218,17 @@
   }
 
   &__card-title {
-    font-size: 18px; // モバイル: 18px
+    font-size: 18px;
     font-weight: 700;
     color: $color-secondary;
     margin-bottom: $spacing-small;
 
     @include up(tab) {
-      font-size: 19px; // タブレット: 19px
+      font-size: 19px;
     }
 
     @include up(pc) {
-      font-size: 20px; // PC: 20px
+      font-size: 20px;
     }
   }
 
@@ -247,11 +244,11 @@
     margin-bottom: $spacing-large;
 
     @include up(tab) {
-      line-height: 1.8; // タブレット: 1.8
+      line-height: 1.8;
     }
 
     @include up(pc) {
-      line-height: 1.9; // PC: 1.9
+      line-height: 1.9;
     }
   }
 

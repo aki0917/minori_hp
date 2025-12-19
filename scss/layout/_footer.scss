@@ -70,7 +70,7 @@
     img {
       height: 48px;
       width: auto;
-      filter: brightness(0) invert(1); // 白いロゴに変換
+      filter: brightness(0) invert(1);
 
       @include up(tab) {
         height: 56px;
@@ -79,53 +79,52 @@
   }
 
   &__description {
-    font-size: 13px; // モバイル: 13px
-    line-height: 1.7; // モバイル: 1.7
+    font-size: 13px;
+    line-height: 1.7;
     color: rgba($color-white, 0.9);
     margin: 0;
 
     @include up(tab) {
-      font-size: $font-size-small; // タブレット: 14px
+      font-size: $font-size-small;
       line-height: 1.8;
     }
 
     @include up(pc) {
-      font-size: $font-size-base; // PC: 16px
+      font-size: $font-size-base;
       line-height: 1.8;
     }
   }
 
-  // ネット販売セクションのテキスト
   &__shop-description {
-    font-size: 13px; // モバイル: 13px
-    line-height: 1.7; // モバイル: 1.7
+    font-size: 13px;
+    line-height: 1.7;
     color: rgba($color-white, 0.9);
     margin: 0 0 $spacing-small;
 
     @include up(tab) {
-      font-size: $font-size-small; // タブレット: 14px
+      font-size: $font-size-small;
       line-height: 1.8;
     }
 
     @include up(pc) {
-      font-size: $font-size-base; // PC: 16px
-      line-height: 2.0; // PCでは少し行間を広めに
+      font-size: $font-size-base;
+      line-height: 2.0;
     }
   }
 
   &__title {
-    font-size: 16px; // モバイル: 16px
+    font-size: 16px;
     font-weight: bold;
     margin-bottom: $spacing-medium;
     color: $color-white;
 
     @include up(tab) {
-      font-size: 18px; // タブレット: 18px
+      font-size: 18px;
       margin-bottom: $spacing-large;
     }
 
     @include up(pc) {
-      font-size: 20px; // PC: 20px
+      font-size: 20px;
     }
   }
 
@@ -172,7 +171,6 @@
     }
   }
 
-  // ネット販売セクションのリンク（ナビと同じホバー表現）
   &__shop-link {
     color: rgba($color-white, 0.9);
     font-size: $font-size-small;
@@ -208,18 +206,18 @@
 
   &__info {
     &-text {
-      font-size: 13px; // モバイル: 13px
-      line-height: 1.7; // モバイル: 1.7
+      font-size: 13px;
+      line-height: 1.7;
       color: rgba($color-white, 0.9);
       margin-bottom: $spacing-large;
 
       @include up(tab) {
-        font-size: $font-size-small; // タブレット: 14px
+        font-size: $font-size-small;
         line-height: 1.8;
       }
 
       @include up(pc) {
-        font-size: $font-size-base; // PC: 16px
+        font-size: $font-size-base;
         line-height: 1.8;
       }
     }
@@ -248,7 +246,6 @@
     }
 
     &-item {
-      // アイテムスタイル
     }
 
     &-link {
@@ -269,7 +266,6 @@
       img {
         width: 24px;
         height: 24px;
-        // filter: brightness(0) invert(1); // 白いアイコンに変換（削除：カラーアイコンを使用）
       }
     }
   }

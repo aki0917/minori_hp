@@ -60,7 +60,6 @@
     @include hover-effect;
     position: relative;
 
-    // アクセントバー
     &::before {
       content: '';
       grid-column: 1 / 2;
@@ -129,7 +128,6 @@
     text-align: center;
   }
 
-  // コンテナ（メイン + サイドバー）
   &__container {
     display: grid;
     grid-template-columns: 1fr;
@@ -141,14 +139,12 @@
     }
   }
 
-  // メインコンテンツ
   &__main {
-    min-width: 0; // グリッドアイテムのオーバーフロー対策
+    min-width: 0;
   }
 
-  // サイドバー
   &__sidebar {
-    min-width: 0; // グリッドアイテムのオーバーフロー対策
+    min-width: 0;
   }
 }
 
@@ -228,7 +224,6 @@
     font-weight: 500;
   }
 
-  // カテゴリー・アーカイブ用のリンクスタイル
   &__widget:first-child &__link,
   &__widget:last-child &__link {
     flex-direction: row;
@@ -249,7 +244,6 @@
     }
   }
 
-  // SNSリンク
   &__social {
     display: flex;
     flex-direction: column;

@@ -27,8 +27,8 @@
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    aspect-ratio: auto; // モバイルでは自動
-    min-height: auto; // モバイルでは自動
+    aspect-ratio: auto;
+    min-height: auto;
 
     @include up(tab) {
       aspect-ratio: 1 / 1;
@@ -40,11 +40,11 @@
   }
 
   &__center {
-    position: static; // モバイルではstatic
-    transform: none; // モバイルではtransformなし
+    position: static;
+    transform: none;
     margin: 0 auto $spacing-large;
     z-index: 10;
-    width: 180px; // モバイルサイズ
+    width: 180px;
     height: 180px;
     background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
     border-radius: 50%;
@@ -77,19 +77,19 @@
     padding: $spacing-medium;
 
     @include up(tab) {
-      font-size: 20px; // タブレット: 20px
+      font-size: 20px;
       line-height: 1.6;
     }
 
     @include up(pc) {
-      font-size: 24px; // PC: 24px
+      font-size: 24px;
       line-height: 1.6;
     }
   }
 
   &__petals {
     list-style: none;
-    display: grid; // モバイルではグリッドレイアウト
+    display: grid;
     grid-template-columns: 1fr;
     gap: $spacing-medium;
     padding: $spacing-large 0;
@@ -106,7 +106,6 @@
   }
 
   &__petal {
-    // モバイルではグリッドレイアウト用
     position: static;
     transform: none;
     margin: $spacing-medium auto;
@@ -135,7 +134,6 @@
     
     }
 
-    // ホバー時にscaleのみ適用（元の位置は保持）
     &--1:hover {
       @include up(tab) {
         transform: translate(-50%, -50%) rotate(0deg) translateY(-240px) rotate(0deg) scale(1.15);
@@ -205,7 +203,7 @@
     height: 100%;
     background-color: $color-white;
     border: 3px solid $color-primary;
-    border-radius: 16px; // モバイルでは角丸
+    border-radius: 16px;
     padding: $spacing-large;
     display: flex;
     flex-direction: column;
@@ -217,11 +215,10 @@
     cursor: pointer;
 
     @include up(tab) {
-      border-radius: 50%; // タブレット以上では円形
+      border-radius: 50%;
       padding: $spacing-medium;
     }
 
-    // スマホ時のホバー/タッチ（よりわかりやすい色）
     @media (max-width: 768px) {
       &:hover,
       &:active {
@@ -233,7 +230,6 @@
       }
     }
 
-    // タブレット以上のホバー
     .p-services__petal:hover & {
       @include up(tab) {
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -244,31 +240,31 @@
   }
 
   &__petal-title {
-    font-size: 14px; // モバイル: 14px
+    font-size: 14px;
     font-weight: bold;
     color: $color-secondary;
     margin-bottom: $spacing-small;
 
     @include up(tab) {
-      font-size: 16px; // タブレット: 16px
+      font-size: 16px;
     }
     @include up(pc) {
-      font-size: 17px; // PC: 18px
+      font-size: 17px;
     }
   }
 
   &__petal-text {
-    font-size: 12px; // モバイル: 12px
+    font-size: 12px;
     color: $color-text;
-    line-height: 1.7; // モバイル: 1.7
-    text-align: left; // リスト項目は左揃え
+    line-height: 1.7;
+    text-align: left;
 
     @include up(tab) {
-      font-size: 12px; // タブレット: 12px
+      font-size: 12px;
       line-height: 1.8;
     }
     @include up(pc) {
-      font-size: 13px; // PC: 13px
+      font-size: 13px;
       line-height: 1.8;
     }
   }

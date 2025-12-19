@@ -20,7 +20,6 @@
     @include up(pc-large) { padding: 0 $spacing-xxl; }
   }
 
-  // タイトルは共通クラス c-sec-title を使用
   &__title {
     margin-bottom: $spacing-xl;
 
@@ -29,7 +28,6 @@
     }
   }
 
-  // サブタイトル（店舗名など）
   &__subtitle {
     margin-top: $spacing-xxxl;
     margin-bottom: $spacing-xl;
@@ -64,7 +62,6 @@
     }
   }
 
-  // oEmbed用のリスト（Instagram公式埋め込み）
   &__list {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -92,7 +89,6 @@
       border-radius: 16px;
     }
 
-    // ホバー時のエフェクト
     &:hover {
       .p-instagram__image {
         transform: scale(1.05);
@@ -103,7 +99,6 @@
       }
     }
 
-    // oEmbed用のスタイル（Instagram公式埋め込みiframe）
     iframe {
       width: 100% !important;
       max-width: 100%;
@@ -128,7 +123,6 @@
       border-radius: 16px;
     }
 
-    // ホバー時のオーバーレイ
     &::after {
       content: '';
       position: absolute;
@@ -147,7 +141,6 @@
       }
     }
 
-    // Instagramアイコンを中央に表示（オプション）
     &::before {
       content: '';
       position: absolute;

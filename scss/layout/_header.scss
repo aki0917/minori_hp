@@ -4,30 +4,29 @@
 
 .l-header {
   background-color: rgba($color-white, 0.95);
-  position: fixed; // stickyからfixedに変更（スクロール表示に対応）
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
   -webkit-backdrop-filter: saturate(180%) blur(8px);
   backdrop-filter: saturate(180%) blur(8px);
-  // 初期状態はJavaScript（GSAP）で制御
   transition: background-color 0.3s ease;
 
   &__inner {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 $spacing-medium; // 16px
+    padding: 0 $spacing-medium;
     @include flex-between;
     height: 80px;
 
-    @include up(tab) { // ≥769px → 24px
+    @include up(tab) {
       padding: 0 $spacing-large;
     }
-    @include up(pc) { // ≥1025px → 32px
+    @include up(pc) {
       padding: 0 $spacing-xl;
     }
-    @include up(pc-large) { // ≥1440px → 40px
+    @include up(pc-large) {
       padding: 0 $spacing-xxl;
     }
   }
@@ -68,7 +67,6 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    // GSAPでアニメーション制御するため、transitionは削除
     z-index: 105;
 
     @include up(tab) {
@@ -97,7 +95,7 @@
   }
 
   &__logo {
-    font-size: $font-size-base; // モバイル: 16px
+    font-size: $font-size-base;
     font-weight: bold;
     color: $color-secondary;
 
@@ -110,21 +108,21 @@
 
     img {
       display: block;
-      height: 64px; // モバイル: 48px
+      height: 64px;
       width: auto;
     }
 
     @include up(tab) {
-      font-size: $font-size-large; // タブレット: 18px
+      font-size: $font-size-large;
       img {
-        height: 64px; // タブレット: 56px
+        height: 64px;
       }
     }
 
     @include up(pc) {
-      font-size: 20px; // PC: 20px
+      font-size: 20px;
       img {
-        height: 64px; // PC: 64px
+        height: 64px;
       }
     }
   }
@@ -149,11 +147,11 @@
     z-index: 106;
 
     @include up(tab) {
-      position: static; // タブレット以上では通常のフローに戻す（必須）
-      top: auto; // fixed用の位置指定をリセット
-      left: auto; // fixed用の位置指定をリセット
-      width: auto; // 100vwをリセット（画像が潰れる原因）
-      height: auto; // 100vhをリセット（画像が潰れる原因）
+      position: static;
+      top: auto;
+      left: auto;
+      width: auto;
+      height: auto;
       flex-direction: row;
       justify-content: flex-end;
       align-items: center;
@@ -172,7 +170,6 @@
   &.is-open &__nav {
     visibility: visible;
     pointer-events: auto;
-    // GSAPでアニメーション制御するため、transformやopacityはJSで設定
     backdrop-filter: none;
   }
 
@@ -196,7 +193,7 @@
   }
 
   &__nav-social {
-    display: none; // デフォルトでは非表示
+    display: none;
 
     @media (max-width: 768px) {
       display: flex;
@@ -208,8 +205,8 @@
       border-top: 1px solid rgba($color-primary, 0.2);
       width: 100%;
       max-width: 260px;
-      opacity: 0; // 初期状態は非表示（GSAPでアニメーション）
-      transform: translateY(20px); // 初期状態は少し下に
+      opacity: 0;
+      transform: translateY(20px);
     }
   }
 
@@ -353,7 +350,6 @@
     }
   }
 
-  // アクティブ状態のスタイル（緑の下線）
   &__nav-item.is-active,
   &__nav-item.current-menu-item,
   &__nav-item.current_page_item {
@@ -368,5 +364,4 @@
     }
   }
 
-  // 追加のスクロール変化は無し（従来仕様）
 }

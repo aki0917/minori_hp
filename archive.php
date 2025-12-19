@@ -20,7 +20,7 @@ get_header();
           $news_query = new WP_Query(
             array(
               'post_type'      => 'news',
-              'posts_per_page' => get_query_var( 'posts_per_page' ),
+              'posts_per_page' => 10,
               'paged'          => $paged,
               'orderby'        => 'date',
               'order'          => 'DESC',
@@ -43,17 +43,6 @@ get_header();
               </li>
               <?php endwhile; ?>
             </ul>
-            <div class="p-news__pagination">
-              <?php
-              the_posts_pagination(
-                array(
-                  'mid_size'  => 1,
-                  'prev_text' => '前へ',
-                  'next_text' => '次へ',
-                )
-              );
-              ?>
-            </div>
             <?php wp_reset_postdata(); ?>
           <?php else : ?>
             <p class="p-news__empty">現在、お知らせはありません。</p>

@@ -20,7 +20,6 @@
     @include up(pc-large) { padding: 0 $spacing-xxl; }
   }
 
-  // 大口購入のチャートフロー（縦プログレスバー形式）
   &__flow {
     margin-bottom: 80px;
 
@@ -126,7 +125,6 @@
       min-height: 100px;
     }
 
-    // アニメーション用のプログレス効果（オプション）
     &::after {
       content: '';
       position: absolute;
@@ -191,7 +189,6 @@
     }
   }
 
-  // よくある質問
   &__faq {
     .c-sec-title {
       margin-bottom: 48px;
@@ -299,8 +296,6 @@
     }
   }
 
-  // タイトルは共通クラス c-sec-title を使用
-
   &__slider {
     padding: $spacing-large 0 $spacing-xxxl;
     overflow: visible;
@@ -340,7 +335,6 @@
     }
   }
 
-  // 各スライドの背景色を個別に設定（仮の背景色 - 画像差し替え用）
   .swiper-slide:nth-child(1) &__card &__image {
     background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
   }
@@ -357,11 +351,6 @@
     background: linear-gradient(135deg, #66BB6A 0%, #388E3C 100%);
   }
 
-  // 画像を後で追加する場合、以下のように使用:
-  // .swiper-slide:nth-child(1) &__card &__image {
-  //   background-image: url('path/to/image1.jpg');
-  // }
-
   &__image-overlay {
     position: absolute;
     top: 0;
@@ -375,7 +364,7 @@
   &__icon {
     position: relative;
     z-index: 2;
-    width: 56px; // モバイル: 56px
+    width: 56px;
     height: 56px;
     margin-bottom: $spacing-medium;
     background: rgba($color-white, 0.9);
@@ -383,26 +372,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px; // モバイル: 28px
+    font-size: 28px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
     @include up(tab) {
-      width: 64px; // タブレット: 64px
+      width: 64px;
       height: 64px;
-      font-size: 32px; // タブレット: 32px
+      font-size: 32px;
     }
 
     @include up(pc) {
-      width: 72px; // PC: 72px
+      width: 72px;
       height: 72px;
-      font-size: 36px; // PC: 36px
+      font-size: 36px;
     }
   }
 
   &__title {
     position: relative;
     z-index: 2;
-    font-size: 20px; // モバイル: 20px
+    font-size: 20px;
     font-weight: 700;
     color: $color-white;
     text-align: center;
@@ -410,11 +399,11 @@
     margin: 0;
 
     @include up(tab) {
-      font-size: 24px; // タブレット: 24px
+      font-size: 24px;
     }
 
     @include up(pc) {
-      font-size: 28px; // PC: 28px
+      font-size: 28px;
     }
   }
 
@@ -427,22 +416,21 @@
 
   &__text {
     color: $color-text-light;
-    line-height: 1.7; // モバイル: 1.7
+    line-height: 1.7;
     margin: 0;
-    font-size: $font-size-small; // モバイル: 14px
+    font-size: $font-size-small;
 
     @include up(tab) {
-      font-size: $font-size-base; // タブレット: 16px
+      font-size: $font-size-base;
       line-height: 1.8;
     }
 
     @include up(pc) {
-      font-size: $font-size-large; // PC: 18px
+      font-size: $font-size-large;
       line-height: 1.9;
     }
   }
 
-  // Swiper カスタマイズ
   &__navigation {
     position: relative;
     margin-top: $spacing-large;
@@ -480,7 +468,6 @@
     right: auto !important;
     bottom: auto !important;
 
-    // Swiperのデフォルトの::beforeと::afterを完全にリセット
     &::before,
     &::after {
       content: '' !important;
@@ -500,14 +487,12 @@
       text-rendering: auto !important;
     }
 
-    // 前へボタン（左矢印）
     &.swiper-button-prev::after {
       border-width: 6px 10px 6px 0 !important;
       border-color: transparent $color-primary transparent transparent !important;
       margin-left: -3px !important;
     }
 
-    // 次へボタン（右矢印）
     &.swiper-button-next::after {
       border-width: 6px 0 6px 10px !important;
       border-color: transparent transparent transparent $color-primary !important;
@@ -534,7 +519,6 @@
     }
   }
 
-  // Swiperのデフォルトスタイルを完全に上書き（グローバル）
   .swiper-button-prev,
   .swiper-button-next {
     position: static !important;
@@ -552,11 +536,9 @@
   }
 }
 
-// Swiperボタンのグローバルリセット（より強力に）
 .p-info {
   .swiper-button-prev,
   .swiper-button-next {
-    // すべてのデフォルトスタイルをリセット
     all: initial;
     width: 48px !important;
     height: 48px !important;

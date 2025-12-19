@@ -11,22 +11,21 @@
   margin-bottom: $spacing-large;
 
   @include up(tab) {
-    font-size: 28px; // タブレット: 28px
+    font-size: 28px;
     margin-bottom: $spacing-xl;
   }
 
   @include up(pc) {
-    font-size: 32px; // PC: 32px
+    font-size: 32px;
   }
 
-  // 共通の下線
   &::after {
     content: '';
     display: block;
     width: 48px;
     height: 2px;
     margin: $spacing-small auto 0;
-    background: $color-secondary; // #2E7D32
+    background: $color-secondary;
     border-radius: 1px;
 
     @include up(tab) {
