@@ -38,6 +38,19 @@ function minorihp_setup() {
 }
 add_action( 'after_setup_theme', 'minorihp_setup' );
 
+// トップページのtitleをカスタマイズ
+function minorihp_custom_title( $title_parts ) {
+  if ( is_front_page() || is_home() ) {
+    $title_parts['title'] = '農業資材・農薬・肥料の専門店｜農家の店みのり｜栃木・茨城';
+    $title_parts['site'] = '';
+  } elseif ( is_page_template( 'page-shop.php' ) ) {
+    $title_parts['title'] = '店舗一覧｜農業資材・農薬・肥料の専門店｜農家の店みのり｜栃木・茨城';
+    $title_parts['site'] = '';
+  }
+  return $title_parts;
+}
+add_filter( 'document_title_parts', 'minorihp_custom_title' );
+
 // スタイルシートとスクリプトの読み込み
 function minorihp_scripts() {
     // テーマのスタイルシート

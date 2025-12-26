@@ -14,6 +14,9 @@ get_header();
 $template_uri = get_template_directory_uri();
 ?>
 
+<!-- SEO用H1（不可視） -->
+<h1 class="u-visually-hidden">農業資材・農薬・肥料の専門店 農家の店みのり（栃木県・茨城県）</h1>
+
 <section class="l-hero">
   <div class="l-hero-bg">
     <picture>
@@ -574,6 +577,37 @@ $template_uri = get_template_directory_uri();
     </div>
   </section>
 </main>
+
+<?php
+// FAQPage構造化データを生成
+$faq_structured_data = array(
+  '@context' => 'https://schema.org',
+  '@type' => 'FAQPage',
+  'mainEntity' => array(),
+);
+
+foreach ( $faqs as $faq ) {
+  // HTMLタグを除去してテキストのみに変換
+  $answer_text = wp_strip_all_tags( $faq['answer'] );
+  // 改行や余分な空白を整理
+  $answer_text = preg_replace( '/\s+/', ' ', $answer_text );
+  $answer_text = trim( $answer_text );
+  
+  $faq_structured_data['mainEntity'][] = array(
+    '@type' => 'Question',
+    'name' => $faq['question'],
+    'acceptedAnswer' => array(
+      '@type' => 'Answer',
+      'text' => $answer_text,
+    ),
+  );
+}
+?>
+
+<!-- FAQPage構造化データ -->
+<script type="application/ld+json">
+<?php echo wp_json_encode( $faq_structured_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ); ?>
+</script>
 
 <?php
 get_footer();

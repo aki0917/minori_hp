@@ -3,14 +3,15 @@
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <?php wp_head(); ?>
   
-  <!-- メタタグ -->
+  <!-- トップページ専用のmeta description -->
   <?php if ( is_front_page() || is_home() ) : ?>
-    <meta name="description" content="農業資材、農薬、肥料、機械など生産資材から、野菜・花の種や苗を扱う大型の専門店。栃木県、茨城県に9店舗を展開しており、取り扱いアイテム数は3万点以上です。">
+    <meta name="description" content="農家の店みのりは、農業資材・農薬・肥料・種苗・園芸用品を扱う専門店です。栃木県・茨城県に9店舗を展開し、プロ農家から家庭菜園まで幅広く対応しています。">
   <?php else : ?>
     <meta name="description" content="<?php echo esc_attr( wp_trim_words( get_the_excerpt() ?: get_the_content(), 30 ) ); ?>">
   <?php endif; ?>
+  
+  <?php wp_head(); ?>
   
   <!-- OGP -->
   <meta property="og:type" content="<?php echo is_singular() ? 'article' : 'website'; ?>">
@@ -38,7 +39,28 @@
   <!-- 共通構造化データ（全ページ共通） -->
   <!-- ============================================ -->
   
-  <!-- Organization（企業情報） -->
+  <?php if ( is_front_page() || is_home() ) : ?>
+  <!-- Organization（トップページ専用・シンプル版） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "農家の店みのり FARM & GARDEN",
+    "url": "https://noukanomiseminori.com/",
+    "logo": "https://noukanomiseminori.com/assets/img/common/logo-1.png",
+    "description": "農業資材・農薬・肥料・種苗・園芸用品を扱う専門店。栃木県・茨城県に9店舗を展開。",
+    "areaServed": ["栃木県", "茨城県"],
+    "sameAs": [
+      "https://www.instagram.com/noukanomiseminori/",
+      "https://www.rakuten.co.jp/kminori/",
+      "https://store.shopping.yahoo.co.jp/noyaku-com/",
+      "https://www.amazon.co.jp/s?i=merchant-items&me=A2EFHFKX98OBK5"
+    ]
+  }
+  </script>
+  <?php endif; ?>
+  
+  <!-- Organization（企業情報・詳細版） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",

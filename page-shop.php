@@ -73,31 +73,120 @@ $shops = array(
     'image'   => 'IP1.jpg',
   ),
 );
+
+// 住所をパースする関数（テンプレート内で使用）
+if ( ! function_exists( 'minorihp_parse_shop_address' ) ) {
+  function minorihp_parse_shop_address( $address ) {
+    $address = wp_strip_all_tags( $address );
+    $parsed = array(
+      'postalCode' => '',
+      'addressLocality' => '',
+      'addressRegion' => '',
+      'streetAddress' => '',
+    );
+    
+    // 郵便番号を抽出
+    if ( preg_match( '/〒?(\d{3}-\d{4})/', $address, $matches ) ) {
+      $parsed['postalCode'] = $matches[1];
+      $address = preg_replace( '/〒?\d{3}-\d{4}\s*/', '', $address );
+    }
+    
+    // 都道府県を抽出（都道府県名のパターンにマッチ）
+    if ( preg_match( '/([^都道府県]*[都道府県])/', $address, $matches ) ) {
+      $prefecture = trim( $matches[1] );
+      $parsed['addressRegion'] = $prefecture;
+      $address = str_replace( $prefecture, '', $address );
+    }
+    
+    // 市区町村を抽出
+    if ( preg_match( '/([^\d]+?[市区町村])/', $address, $matches ) ) {
+      $parsed['addressLocality'] = trim( $matches[1] );
+      $address = str_replace( $matches[1], '', $address );
+    }
+    
+    // 残りを番地として設定
+    $parsed['streetAddress'] = trim( $address );
+    
+    return $parsed;
+  }
+}
+
+// 実際のCPT投稿を取得（1回だけ）
+$shop_posts = get_posts( array(
+  'post_type'      => 'shop',
+  'posts_per_page' => -1,
+  'post_status'    => 'publish',
+) );
+
+// スラッグをキーにした配列を作成
+$shop_posts_by_slug = array();
+foreach ( $shop_posts as $post ) {
+  $shop_posts_by_slug[ $post->post_name ] = $post;
+}
+
+// 構造化データ用の店舗リストを準備
+$structured_shops = array();
+foreach ( $shops as $index => $shop ) {
+  $parsed_address = minorihp_parse_shop_address( $shop['address'] );
+  
+  // 実際の投稿があればそのパーマリンクを使用、なければ固定リンク
+  if ( isset( $shop_posts_by_slug[ $shop['slug'] ] ) ) {
+    $detail_url = get_permalink( $shop_posts_by_slug[ $shop['slug'] ]->ID );
+  } else {
+    $detail_url = home_url( '/shop/' . $shop['slug'] . '/' );
+  }
+  
+  $shop_name_clean = wp_strip_all_tags( $shop['name'] );
+  
+  $structured_shops[] = array(
+    '@type' => 'ListItem',
+    'position' => $index + 1,
+    'item' => array(
+      '@type' => 'GardenStore',
+      'name' => '農家の店みのりFARM & GARDEN ' . $shop_name_clean,
+      'image' => esc_url( $assets . '/img/shop/' . $shop['image'] ),
+      'url' => esc_url( $detail_url ),
+      'address' => array(
+        '@type' => 'PostalAddress',
+        'streetAddress' => $parsed_address['streetAddress'],
+        'addressLocality' => $parsed_address['addressLocality'],
+        'addressRegion' => $parsed_address['addressRegion'],
+        'postalCode' => $parsed_address['postalCode'],
+        'addressCountry' => 'JP',
+      ),
+      'telephone' => $shop['tel'],
+      'parentOrganization' => array(
+        '@type' => 'Organization',
+        'name' => '株式会社みのり',
+      ),
+    ),
+  );
+}
 ?>
+
+<!-- 店舗一覧ページ用の構造化データ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "店舗一覧",
+  "description": "農家の店みのりFARM & GARDENの店舗一覧。栃木県・茨城県に9店舗を展開しています。",
+  "numberOfItems": <?php echo count( $structured_shops ); ?>,
+  "itemListElement": <?php echo wp_json_encode( $structured_shops, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?>
+}
+</script>
 
 <main class="l-main">
   <?php while ( have_posts() ) : the_post(); ?>
   <section class="p-shop">
     <div class="p-shop__inner">
-      <h2 class="p-shop__title c-sec-title"><?php the_title(); ?></h2>
+      <h1 class="p-shop__title c-sec-title">栃木県・茨城県の農業資材専門店 店舗一覧</h1>
       <p class="p-shop__description">
         栃木県・茨城県に9店舗を展開しています。お近くの店舗をご利用ください。
       </p>
       <ul class="p-shop__list">
         <?php 
-        // 実際のCPT投稿を取得
-        $shop_posts = get_posts( array(
-          'post_type'      => 'shop',
-          'posts_per_page' => -1,
-          'post_status'    => 'publish',
-        ) );
-        
-        // スラッグをキーにした配列を作成
-        $shop_posts_by_slug = array();
-        foreach ( $shop_posts as $post ) {
-          $shop_posts_by_slug[ $post->post_name ] = $post;
-        }
-        
+        // $shop_posts_by_slug は上で既に取得済み
         foreach ( $shops as $shop ) :
           // 実際の投稿があればそのパーマリンクを使用、なければ固定リンク
           if ( isset( $shop_posts_by_slug[ $shop['slug'] ] ) ) {
