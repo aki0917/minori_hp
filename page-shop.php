@@ -180,7 +180,9 @@ foreach ( $shops as $index => $shop ) {
   <?php while ( have_posts() ) : the_post(); ?>
   <section class="p-shop">
     <div class="p-shop__inner">
-      <h1 class="p-shop__title c-sec-title">栃木県・茨城県の農業資材専門店 店舗一覧</h1>
+      <h1 class="p-shop__title c-sec-title">
+        <span class="u-visually-hidden">栃木県・茨城県の農業資材専門店 </span>店舗一覧
+      </h1>
       <p class="p-shop__description">
         栃木県・茨城県に9店舗を展開しています。お近くの店舗をご利用ください。
       </p>
