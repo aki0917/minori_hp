@@ -161,20 +161,6 @@ $shop_data_map = array(
     } else {
       $map_iframe = '<iframe id="shopMap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3203.5!2d140.0!3d36.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzYsNDgsMC4wIE4gMTQwLDAwLDAuMCBF!5e0!3m2!1sja!2sjp!4v1234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
     }
-    
-    // SEO補足文を生成
-    $seo_note = '';
-    if ( $shop_data ) {
-      $region_name = $shop_data['address_region'];
-      $locality_name = $shop_data['address_locality'];
-      $shop_display_name = $shop_data['name'];
-      $seo_note = sprintf(
-        '農家の店みのり%sは、%s%sで農業資材・農薬・肥料を取り扱う専門店です。',
-        $shop_display_name,
-        $region_name,
-        $locality_name
-      );
-    }
     ?>
     
     <!-- LocalBusiness構造化データ -->
@@ -257,9 +243,6 @@ $shop_data_map = array(
               }
               ?>
             </div>
-            <?php if ( $seo_note ) : ?>
-            <p class="seo-note"><?php echo esc_html( $seo_note ); ?></p>
-            <?php endif; ?>
             <?php if ( $feature_image_url ) : ?>
             <div class="p-shop-detail__features-image">
               <img src="<?php echo esc_url( $feature_image_url ); ?>" alt="<?php echo esc_attr( $shop_name ); ?>">
