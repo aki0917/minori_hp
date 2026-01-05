@@ -91,7 +91,7 @@ $assets = get_template_directory_uri() . '/assets';
             </tr>
             <tr>
               <th>設立</th>
-              <td>1992年4月</td>
+              <td>1992年2月</td>
             </tr>
             <tr>
               <th>事業内容</th>
@@ -187,14 +187,14 @@ $assets = get_template_directory_uri() . '/assets';
         <ul class="p-about-history__list">
           <?php
           $history_items = array(
-            array( 'year' => '1992年', 'text' => '株式会社みのりを創立' ),
+            array( 'year' => '1992年2月', 'text' => '株式会社みのりを創立' ),
             array(
               'year' => '1992年4月',
               'text' => '栃木県那須塩原市に西那須野店オープン',
               'image' => 'ni1.jpg',
             ),
             array(
-              'year' => '1995年2月',
+              'year' => '1995年7月',
               'text' => '栃木県下野市に石橋店オープン',
               'image' => 'isi1.jpg',
             ),
@@ -229,7 +229,7 @@ $assets = get_template_directory_uri() . '/assets';
               'image' => 'iti1.jpg',
             ),
             array(
-              'year' => '2023年',
+              'year' => '2022年3月',
               'text' => '栃木県宇都宮市にみのり花木センター<br>インターパーク店オープン',
               'image' => 'IP1.jpg',
             ),
